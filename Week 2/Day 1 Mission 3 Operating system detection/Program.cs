@@ -6,7 +6,10 @@ namespace Mission_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            string checkSystem = System.Environment.OSVersion.VersionString;
+            Console.WriteLine($"You are running the game on Windows: {checkSystem.Contains("Windows")}");
+
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace Mission_1
+namespace Test
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string playerName = "Hild";
+            Console.WriteLine($"Welcome to Dungeon World, {playerName}! We call upon you to oversee a team of adventurers in a series of battles that will decide the fate of the world itself!");
+
         }
     }
 }

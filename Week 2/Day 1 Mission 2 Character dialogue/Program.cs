@@ -6,7 +6,11 @@ namespace Mission_2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string warriorName = "Nell";
+            string mageName = "Joa";
+
+            Console.WriteLine($"The party stared down the stone stairs into darkness. \"We should have brought some torches with us,\" remarked {warriorName}. {mageName} turned around and replied \" Worry not dear {warriorName}, let me shine some light for you,\" as he cast a Continual light spell.");
+
         }
     }
 }
