@@ -7,19 +7,21 @@ namespace Mission_2
         static void Main(string[] args)
         {
             var random = new Random();
-            int dice = random.Next(1, 7);
-            Console.WriteLine($"The entity rolls {dice}.");
-
-            while (dice < 6)
+            int roll = random.Next(1, 7);
+            int sum = 0;
+            do
             {
-                int roll = random.Next(1, 7);
-                Console.WriteLine($"The entity rolls {roll}.");
+                int dice = random.Next(1, 7);
+                Console.WriteLine($"The entity rolls {dice}.");
+                
+                sum += dice;
 
-                if (roll == 6)
+                if (dice > 5)
                 {
+                    Console.WriteLine($" \nTotal score: {sum}");
                     break;
                 }
-            }
+            } while (roll != 0);
         }
     }
 }
