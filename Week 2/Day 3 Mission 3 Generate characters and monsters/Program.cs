@@ -39,9 +39,7 @@ namespace Mission_3
                 sum3 += roll;
             }
             int army = sum3 + 4000;
-
             Console.WriteLine($"Dear gods, an army of 100 cubes descends upon us with a total of {army} HP. We are doomed!");
-
 
         }
     }
