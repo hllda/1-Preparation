@@ -34,28 +34,19 @@ namespace Mission_1
                     while (HP < 50)
                     
                            {
-                           HP++;
-                           HP++;
-                           HP++;
-                           HP++;
-                           HP++;
-                           HP++;
-                           HP++;
-                           HP++; 
-                           HP++;
-                           HP++;
-                        Console.WriteLine(HP);
+                            HP += 10;
+                            Console.WriteLine(HP);
                            }
 
                     Console.WriteLine($"\n{com}\n");       
                     Console.WriteLine("Warrior: Thank you.\n\n"!);
-                    Console.WriteLine($"Warrior HP: {HP}\n\n\n\n\n\n");
+                    Console.WriteLine($"Warrior HP: {HP}");
 
                 }
 
                 else
                 {
-                    Console.WriteLine($"Mage: I'm not wasting my mana on papercuts!\n\n\n\n\n\n");
+                    Console.WriteLine($"Mage: I'm not wasting my mana on papercuts!");
                 }
             }
 

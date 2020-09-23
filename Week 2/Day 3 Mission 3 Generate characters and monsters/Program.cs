@@ -33,15 +33,13 @@ namespace Mission_3
 
 
             int sum3 = 0;
-            for (int i = 0; i < 800; i++)
+            for (int index = 0; index < 800; index++)
             {
                 int roll = random.Next(1, 11);
                 sum3 += roll;
             }
             int army = sum3 + 4000;
-
             Console.WriteLine($"Dear gods, an army of 100 cubes descends upon us with a total of {army} HP. We are doomed!");
-
 
         }
     }
