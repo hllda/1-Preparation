@@ -103,7 +103,7 @@ namespace Mission_2
                         }
 
                 if (names.Count == 1){ 
-                        Console.WriteLine($"\n{names[0]} cries out from exhaustion when the basilisk finally collapses from the last blow. This was not a victory, this was only avoiding defeat. This was a battle they wish they could forget...\n"); 
+                        Console.WriteLine($"\n{names[0]} cries out from exhaustion as the basilisk collapses from the final blow. This was not a victory, this was only avoiding defeat. This was a battle they wish they could forget...\n"); 
                         }
             }
             
