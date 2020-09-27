@@ -103,6 +103,7 @@ namespace list_tutorial
                   Console.WriteLine("You decided not to go bowling.");
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 1 Mission 1 Bowling pins", "Day 1 Mission 1 Bowling pins.csproj", "{A5151B40-A373-4DC5-A607-35793392A788}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5151B40-A373-4DC5-A607-35793392A788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5151B40-A373-4DC5-A607-35793392A788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5151B40-A373-4DC5-A607-35793392A788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5151B40-A373-4DC5-A607-35793392A788}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A1AA355-9584-46D5-B103-55B744ACFF8A}
+	EndGlobalSection
+EndGlobal
