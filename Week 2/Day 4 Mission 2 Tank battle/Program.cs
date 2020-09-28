@@ -1,31 +1,30 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using System;
+﻿using System;
 
 namespace Day_4_Mission_2_Tank_battle
 {
     class Program
     {
         static void Main(string[] args)
-        {
+        {   
+            bool tankAlive = true;
             var random = new Random();
             int distance = random.Next(40, 71);
+            
             Console.WriteLine("WARNING, A TANK IS GETTING TOO CLOSE, STOP IT!\n");
             Console.WriteLine("\nWhat is your name, commander?");
             Console.Write("Enter name: ");
             string name = Console.ReadLine();
             Console.Clear();
 
-            bool tankAlive = true;
-
             while (tankAlive && distance > 0)
             {
-                int move = random.Next(1, 15);
-                
+                int move = random.Next(1, 16);
 
                 Console.WriteLine("MAP:\n");
                    Console.Write("_/");
-                for (int j = 0; j < 76; j++)
-                {
+                for (int j = 0; j < 80; j++)
+                {   
+                    
                     if (j == distance)
                     {
                         Console.Write("T");
@@ -63,14 +62,13 @@ namespace Day_4_Mission_2_Tank_battle
                     {
                         Console.Write("_");
                     }
-
                 }
 
                 Console.WriteLine();
                 if (shot == distance)
                 {
                     Console.WriteLine("\nYou hit the target!");
-                    tankAlive = !tankAlive;
+                    tankAlive = false;
                 }
 
                 if (shot < distance)
@@ -89,17 +87,15 @@ namespace Day_4_Mission_2_Tank_battle
                 distance -= move;
             }
 
-            if (tankAlive = true)
+            if (tankAlive == true)
             {
                 Console.WriteLine("\nTHE TANK WON, GAME OVER");
             }
             
-            if (tankAlive = false)
+            if (tankAlive == false)
             {
             Console.WriteLine("\nTANK YOU FOR DEFEATING THE TANK!");
             }
-            
-
         }
     }
 }
