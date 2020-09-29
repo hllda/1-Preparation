@@ -59,9 +59,6 @@ namespace list_tutorial
                         standingPins.RemoveAt(rnd1);
                         }
 
-                    string stan = String.Join(", ", standingPins);
-                           Console.WriteLine($"{stan}");
-
                     //////////////////// CHECKING PINS /////////////////////////
                     Console.WriteLine("\n");
                         Console.WriteLine($"Current Pins:");
@@ -167,7 +164,10 @@ namespace list_tutorial
                     }
 
                     //////////////////// CHECKING PINS /////////////////////////
-
+                    if (first == 10)
+                        {
+                        goto skip;
+                        }
                     Console.WriteLine($"Press Enter to roll:");
                     Console.ReadKey();
                     Console.Clear();
@@ -243,10 +243,6 @@ namespace list_tutorial
                     {
                     standingPins.Clear();
                     }
-
-                    string stann = String.Join(", ", standingPins);
-                    Console.WriteLine($"{stann}");
-
 
                     // CHECKING PINS
                     Console.WriteLine($"Current Pins:");
@@ -358,7 +354,7 @@ namespace list_tutorial
                 {
                 Console.WriteLine("You decided not to go bowling.");
                 }
-                    Console.WriteLine($"Press Enter to proceed:");
+                    skip: Console.WriteLine($"Press Enter to proceed:");
                     Console.ReadKey();
                     Console.Clear();
 
