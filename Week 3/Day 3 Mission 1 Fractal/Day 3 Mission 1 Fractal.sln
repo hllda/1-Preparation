@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30517.126
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 3 Mission 1 Fractal", "Day 3 Mission 1 Fractal.csproj", "{2E02CBD1-23B9-4730-B97C-487248696BD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 3 Mission 1 Fractal", "Day 3 Mission 1 Fractal.csproj", "{59A09622-FDA0-48F8-9898-30F3A1AE8327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E02CBD1-23B9-4730-B97C-487248696BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E02CBD1-23B9-4730-B97C-487248696BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E02CBD1-23B9-4730-B97C-487248696BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E02CBD1-23B9-4730-B97C-487248696BD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A09622-FDA0-48F8-9898-30F3A1AE8327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A09622-FDA0-48F8-9898-30F3A1AE8327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A09622-FDA0-48F8-9898-30F3A1AE8327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A09622-FDA0-48F8-9898-30F3A1AE8327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3041DB4E-BF4E-4DA5-B663-432AB5050EEF}
+		SolutionGuid = {9A63BC45-6445-406A-91F8-DE8D796CB646}
 	EndGlobalSection
 EndGlobal
