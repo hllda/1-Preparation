@@ -23,7 +23,7 @@ namespace Day_3_Mission_1_Fractal
                     }
 
                     int c = k % 16;
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.BackgroundColor = (ConsoleColor)c;
                     Console.Write(' ');
                 }
 
