@@ -7,6 +7,7 @@ namespace Day_4_Mission_3_Party_lists
     {      
         static int Factorial(int n)
         {   
+
             if (n == 0)
             {
             return 1;
@@ -15,12 +16,27 @@ namespace Day_4_Mission_3_Party_lists
             {
             return n * Factorial(n - 1);
             }
+
         } 
-        
-        
-        
+
         static string WriteAllPermutations(List<string> names)
         {
+            if (names.Count == 0)
+            {
+            return "";
+            }
+
+            if (names.Count == 1)
+            {
+            return names[0];
+            }
+
+            else
+            {
+            
+
+            }
+
             var Random = new Random();
             for (int i = 0; names.Count-1 > i; i++)
             {
@@ -33,18 +49,19 @@ namespace Day_4_Mission_3_Party_lists
             
             int timesPerName = Factorial(names.Count)/names.Count;
             return "";
+
         }
 
 
 
         static void Main(string[] args)
         {
+
             var names = new List<string> {"Hilda", "Anni", "David", "Matej"};
             names.Sort();
             string joined = String.Join(", ", names);
             Console.WriteLine($"Signed-up participants: {joined}\n");
             Console.WriteLine("Starting orders:");
-
 
             for (int num = 1; num < Factorial(names.Count)+1; num++)
             {
@@ -55,8 +72,7 @@ namespace Day_4_Mission_3_Party_lists
             }
             var Random = new Random();
             int n = Random.Next(0, 11);
+
         }
     }
 }
-
-
