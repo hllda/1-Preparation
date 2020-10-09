@@ -36,7 +36,7 @@ namespace Week_3__Lists_practice
         decimal average = sum / n;
         Console.WriteLine($"The average of the numbers is: {average}");
 
-        int product = (numbers[0]*numbers[1]*numbers[2]*numbers[3]*numbers[4]*numbers[5]*numbers[6]*numbers[7]*numbers[8]*numbers[9]);
+        long product = (numbers[0]*numbers[1]*numbers[2]*numbers[3]*numbers[4]*numbers[5]*numbers[6]*numbers[7]*numbers[8]*numbers[9]);
         Console.WriteLine($"\n\n");
         // 5
         Console.WriteLine($"The product of the first 10 numbers is: {product}");
@@ -66,20 +66,183 @@ namespace Week_3__Lists_practice
         Console.WriteLine($"\n\n");
 
         // 9
-        
-
         List<int> uniqueNumbers = numbers.Distinct().ToList();
-        for (int i = 0; i < 10; i++)
-        uniqueNumbers.ForEach(i => Console.WriteLine($"{i}"));
-        List<int> numbersCopy4 = new List<int>(){uniqueNumbers[n-1], uniqueNumbers[n-2], uniqueNumbers[n-3], uniqueNumbers[n-4], uniqueNumbers[n-5], uniqueNumbers[n-6], uniqueNumbers[n-7], uniqueNumbers[n-8], uniqueNumbers[n-9], uniqueNumbers[n-10]};
-        string list5 = String.Join(", ", numbersCopy4);
-        Console.Write($"Largest ten unique numbers are: {list5}");  
-      
+        uniqueNumbers.Sort();
+        List<int> uniqueNumbersCopy = new List<int>(uniqueNumbers);
+        int m = uniqueNumbers.Count();
+        int o = n - (numbers.Count - uniqueNumbers.Count);
+        List<int> list5 = new List<int>{uniqueNumbers[m-1], uniqueNumbers[m-2], uniqueNumbers[m-3], uniqueNumbers[m-4], uniqueNumbers[m-5], uniqueNumbers[m-6], uniqueNumbers[m-7], uniqueNumbers[m-8], uniqueNumbers[m-9], uniqueNumbers[m-10]};
+        list5.Sort();
+        string list6 = String.Join(", ", list5);
+        Console.Write($"Largest ten unique numbers are: {list6}");  
         Console.WriteLine($"\n\n");
 
         // 10
+        Console.Write($"There are {o} total unique numbers.");  
+        Console.WriteLine($"\n\n");
 
-        
+        // 11
+
+        List<int> zeronine = new List<int> {}; 
+
+        for (int i = 0; i < 100; i++)
+        {
+        zeronine.Add(i);
+        }
+
+        List<int> missing = zeronine.Except(uniqueNumbers).ToList();
+
+        string list7 = String.Join(", ", missing);
+        Console.Write($"The missing numbers are: {list7}");
+        Console.WriteLine($"\n\n");
+
+        // 12
+
+
+        uniqueNumbers.Sort();
+        string lista = String.Join(", ", uniqueNumbers);     
+        Console.WriteLine($"\n\n");
+        // 2
+        Console.WriteLine($"Numbers are: {lista}");
+        Console.WriteLine($"\n\n");
+
+
+
+
+
+
+
+
+        Console.WriteLine("Histogram:");
+
+        Console.Write("  0-9:");
+        List<int> zerobase = new List<int> {};
+        for (int i = 10; i < 99; i++)
+        {
+        zerobase.Add(i);
+        }
+
+        List<int> zero = uniqueNumbers.Except(zerobase).ToList();
+            for (int i = 0; i < zero.Count; i++)
+            {
+            Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+        Console.Write("10-19:");
+        List<int> onebase = new List<int> {};
+        for (int i = 0; i < 9; i++)
+        {
+        onebase.Add(i);
+        }
+        for (int i = 20; i < 99; i++)
+        {
+        onebase.Add(i);
+        }
+        List<int> one = uniqueNumbers.Except(onebase).ToList();
+        for (int i = 0; i < one.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+        Console.Write("20-29:");
+        List<int> twobase = new List<int> {};
+        for (int i = 0; i < 19; i++)
+        {
+        twobase.Add(i);
+        }
+        for (int i = 30; i < 99; i++)
+        {
+        twobase.Add(i);
+        }
+        List<int> two = uniqueNumbers.Except(twobase).ToList();
+        for (int i = 0; i < two.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+        Console.Write("30-39:");
+        List<int> threebase = new List<int> {};
+        List<int> three = new List<int>(uniqueNumbers);
+        for (int i = 0; i < three.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+            Console.Write("40-49:");
+        List<int> fourbase = new List<int> {};
+        List<int> four = new List<int>(uniqueNumbers);
+        for (int i = 0; i < four.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+            Console.Write("50-59:");
+        List<int> fivebase = new List<int> {};
+        List<int> five = new List<int>(uniqueNumbers);
+        for (int i = 0; i < five.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+            Console.Write("60-69:");
+        List<int> sixbase = new List<int> {};
+        List<int> six = new List<int>(uniqueNumbers);
+        for (int i = 0; i < six.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+            Console.Write("70-79:");
+        List<int> sevenbase = new List<int> {};
+        List<int> seven = new List<int>(uniqueNumbers);
+        for (int i = 0; i < seven.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+            Console.Write("80-89:");
+            List<int> eightbase = new List<int> {};
+        List<int> eight = new List<int>(uniqueNumbers);
+        for (int i = 0; i < eight.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+            Console.Write("90-99:");
+            List<int> ninebase = new List<int> {};
+        List<int> nine = new List<int>(uniqueNumbers);
+
+        for (int i = 0; i < nine.Count; i++)
+            {
+        Console.Write("#");
+            }
+        Console.WriteLine();
+
+
+        Console.WriteLine($"\n\n");
+
+
+
+
+
+
 
 
 
