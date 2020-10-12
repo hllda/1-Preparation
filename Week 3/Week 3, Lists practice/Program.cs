@@ -13,8 +13,7 @@ namespace Week_3__Lists_practice
         
         // 1
         Console.WriteLine("Write a number: ");
-        string numberText = Console.ReadLine();
-        int n = Int32.Parse(numberText);
+        int n = 50;
         
         List<int> numbers = new List<int>{};
         for (int i = 0; i < n; i++)
@@ -97,33 +96,79 @@ namespace Week_3__Lists_practice
         Console.WriteLine($"\n\n");
 
         // 12
-
-
-        uniqueNumbers.Sort();
+        numbers.Sort();
         string lista = String.Join(", ", uniqueNumbers);     
         Console.WriteLine($"\n\n");
-        // 2
+
         Console.WriteLine($"Numbers are: {lista}");
         Console.WriteLine($"\n\n");
 
-
-
-
-
-
-
-
-        Console.WriteLine("Histogram:");
-
-        Console.Write("  0-9:");
-        List<int> zerobase = new List<int> {};
-        for (int i = 10; i < 99; i++)
+        int zeroToNine = 0;
+        int tenToNineteen = 0;
+        int twentyToTwentynine = 0;
+        int thirtyToThirtynine = 0;
+        int fortyToFortynine = 0;
+        int fiftyToFiftynine = 0;
+        int sixtyToNice = 0;
+        int seventyToSeventynine = 0;
+        int eightyToEightynine = 0;
+        int ninetyToNinetynine = 0;
+        foreach (var number in uniqueNumbers) 
         {
-        zerobase.Add(i);
+            if  (number < 10) 
+            {
+            zeroToNine++;
+            }
+
+            if  (9 < number && number < 20) 
+            {
+            tenToNineteen++;
+            }
+
+            if  (19 < number && number < 30) 
+            {
+            twentyToTwentynine++;
+            }
+
+            if  (29 < number && number < 40) 
+            {
+            thirtyToThirtynine++;
+            }
+
+            if  (39 < number && number < 50) 
+            {
+            fortyToFortynine++;
+            }
+
+            if  (49 < number && number < 60) 
+            {
+            fiftyToFiftynine++;
+            }
+
+            if  (59 < number && number < 70) 
+            {
+            sixtyToNice++;
+            }
+
+            if  (69 < number && number < 80) 
+            {
+            seventyToSeventynine++;
+            }
+
+            if  (79 < number && number < 90) 
+            {
+            eightyToEightynine++;
+            }
+
+            if  (89 < number) 
+            {
+            ninetyToNinetynine++;
+            }
         }
 
-        List<int> zero = uniqueNumbers.Except(zerobase).ToList();
-            for (int i = 0; i < zero.Count; i++)
+        Console.WriteLine("Histogram:");
+        Console.Write("  0-9:");
+            for (int i = 0; i < zeroToNine; i++)
             {
             Console.Write("#");
             }
@@ -131,17 +176,7 @@ namespace Week_3__Lists_practice
 
 
         Console.Write("10-19:");
-        List<int> onebase = new List<int> {};
-        for (int i = 0; i < 9; i++)
-        {
-        onebase.Add(i);
-        }
-        for (int i = 20; i < 99; i++)
-        {
-        onebase.Add(i);
-        }
-        List<int> one = uniqueNumbers.Except(onebase).ToList();
-        for (int i = 0; i < one.Count; i++)
+        for (int i = 0; i < tenToNineteen; i++)
             {
         Console.Write("#");
             }
@@ -150,16 +185,9 @@ namespace Week_3__Lists_practice
 
         Console.Write("20-29:");
         List<int> twobase = new List<int> {};
-        for (int i = 0; i < 19; i++)
-        {
-        twobase.Add(i);
-        }
-        for (int i = 30; i < 99; i++)
-        {
-        twobase.Add(i);
-        }
-        List<int> two = uniqueNumbers.Except(twobase).ToList();
-        for (int i = 0; i < two.Count; i++)
+
+
+        for (int i = 0; i < twentyToTwentynine; i++)
             {
         Console.Write("#");
             }
@@ -167,9 +195,8 @@ namespace Week_3__Lists_practice
 
 
         Console.Write("30-39:");
-        List<int> threebase = new List<int> {};
-        List<int> three = new List<int>(uniqueNumbers);
-        for (int i = 0; i < three.Count; i++)
+
+        for (int i = 0; i < thirtyToThirtynine; i++)
             {
         Console.Write("#");
             }
@@ -177,9 +204,8 @@ namespace Week_3__Lists_practice
 
 
             Console.Write("40-49:");
-        List<int> fourbase = new List<int> {};
-        List<int> four = new List<int>(uniqueNumbers);
-        for (int i = 0; i < four.Count; i++)
+
+        for (int i = 0; i < fortyToFortynine; i++)
             {
         Console.Write("#");
             }
@@ -187,9 +213,8 @@ namespace Week_3__Lists_practice
 
 
             Console.Write("50-59:");
-        List<int> fivebase = new List<int> {};
-        List<int> five = new List<int>(uniqueNumbers);
-        for (int i = 0; i < five.Count; i++)
+
+        for (int i = 0; i < fiftyToFiftynine; i++)
             {
         Console.Write("#");
             }
@@ -197,9 +222,7 @@ namespace Week_3__Lists_practice
 
 
             Console.Write("60-69:");
-        List<int> sixbase = new List<int> {};
-        List<int> six = new List<int>(uniqueNumbers);
-        for (int i = 0; i < six.Count; i++)
+        for (int i = 0; i < sixtyToNice; i++)
             {
         Console.Write("#");
             }
@@ -207,9 +230,7 @@ namespace Week_3__Lists_practice
 
 
             Console.Write("70-79:");
-        List<int> sevenbase = new List<int> {};
-        List<int> seven = new List<int>(uniqueNumbers);
-        for (int i = 0; i < seven.Count; i++)
+        for (int i = 0; i < seventyToSeventynine; i++)
             {
         Console.Write("#");
             }
@@ -217,26 +238,135 @@ namespace Week_3__Lists_practice
 
 
             Console.Write("80-89:");
-            List<int> eightbase = new List<int> {};
-        List<int> eight = new List<int>(uniqueNumbers);
-        for (int i = 0; i < eight.Count; i++)
+        for (int i = 0; i < eightyToEightynine; i++)
             {
         Console.Write("#");
             }
         Console.WriteLine();
 
             Console.Write("90-99:");
-            List<int> ninebase = new List<int> {};
-        List<int> nine = new List<int>(uniqueNumbers);
-
-        for (int i = 0; i < nine.Count; i++)
+           
+        for (int i = 0; i < ninetyToNinetynine; i++)
             {
         Console.Write("#");
             }
         Console.WriteLine();
 
 
-        Console.WriteLine($"\n\n");
+        Console.WriteLine($"\n");
+
+
+    // 1
+        List<string> names = new List<string> {"Allie", "Ben", "Claire", "Dan", "Eleanor"}; 
+        string people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //2
+        names[0] = names[0].Replace("Allie", "Duke");
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+       
+    //3
+        names[3] = "Lara";
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //4
+        names[names.Count-1] = "Aaron";
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //5     
+        names.Sort();
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //6
+        names.Reverse();
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //7
+        bool duke = false;
+        if (names.Contains("Duke"))
+            {
+            duke = true;
+            }
+        Console.WriteLine(duke);
+        Console.WriteLine($"\n");
+
+    //8
+        var index = names.IndexOf("Aaron");
+        Console.WriteLine($"{index}\n\n");
+
+    //9
+        names.Insert(0, "Mario");
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+    //10
+        names.Insert(names.Count/2, "Luigi");
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+   //11 
+        List<string> namesCopy = new List<string>{};
+        for (int i = 0; i < names.Count; i++)
+        {
+        namesCopy.Add(names[i]);
+        namesCopy.Add(names[i]);
+        }
+        names.Clear();
+        names = namesCopy; 
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+    
+    //12
+        string hold = names[0];
+        names[0] = names[names.Count-1];
+        names[names.Count-1] = hold;
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //13
+        names.Remove(names[4]);
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //14     
+        names.Remove(names[names.IndexOf("Mario")]);
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //15
+        Console.Write(names.LastIndexOf("Claire"));
+        Console.WriteLine("\n\n");
+
+    //16
+        names.RemoveAt(names.LastIndexOf("Aaron"));
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+
+    //17
+        List<string> uniqueList = names.Distinct().ToList();
+        foreach(var name in uniqueList) 
+        {
+        names.Remove(name);
+        }
+        names = uniqueList.Except(names).ToList();
+        people = String.Join(", ", names);     
+        Console.WriteLine($"{people}\n\n");
+        
+    //18
+        names.Clear();
+        
+
+
+
+
+
+
+
+
 
 
 
