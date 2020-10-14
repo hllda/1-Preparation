@@ -519,7 +519,7 @@ namespace Week_2__Loops_practice
 
         //MURICA FLAG
         Console.Write("()");
-        for (int i = 0; i < n*3+1; i++)
+        for (int i = 0; i < n*4-1; i++)
         {
         Console.Write("_");
         }
@@ -532,14 +532,14 @@ namespace Week_2__Loops_practice
         Console.Write("*");
         Console.Write(" ");
         }
-        for (int l = 0; l < n+1; l++)
+        for (int l = 0; l < n*2-1; l++)
         {
         Console.Write(" ");
         }
         Console.WriteLine("|");
 
         
-        for (int i = 0; i < n-2; ++i)
+        for (int i = 0; i < n/2; ++i)
         {
         Console.Write("||");
         for (int f = 0; f < n-1; f++)
@@ -548,7 +548,7 @@ namespace Week_2__Loops_practice
         Console.Write("*");
         }
         Console.Write(" ");
-        for (int j = 0; j < n+2; j++)
+        for (int j = 0; j < n*2; j++)
         {
         Console.Write("#");
         }
@@ -561,7 +561,7 @@ namespace Week_2__Loops_practice
         Console.Write("*");
         Console.Write(" ");
         }
-        for (int l = 0; l < n+1; l++)
+        for (int l = 0; l < n*2-1; l++)
         {
         Console.Write(" ");
         }
@@ -569,24 +569,26 @@ namespace Week_2__Loops_practice
         }
         
 
+
+
         Console.Write("||");
-        for (int l = 0; l < n*3+1; l++)
+        for (int l = 0; l < n*4-1; l++)
         {
         Console.Write("#");
         }
         Console.WriteLine("|");
 
-        for (int i = 0; i < n-2; i++)
+        for (int i = 0; i < n/3+1; i++)
         {
         Console.Write("||");
-        for (int p = 0; p < n*3+1; p++)
+        for (int p = 0; p < n*4-1; p++)
         {
         Console.Write(" ");
         }
         Console.WriteLine("|");
 
         Console.Write("||");
-        for (int l = 0; l < n*3+1; l++)
+        for (int l = 0; l < n*4-1; l++)
         {
         Console.Write("#");
         }
@@ -669,6 +671,10 @@ namespace Week_2__Loops_practice
         Console.WriteLine("|");
 
 
+        if (n > 3)
+        {
+
+        
         for (int i = 0; i < n/4; i++)
         {
         Console.Write("||");
@@ -692,7 +698,7 @@ namespace Week_2__Loops_practice
         }
         Console.WriteLine("|");
         }
-
+        }
 
         Console.Write("||");
         for (int l = 0; l < n; l++)
@@ -761,6 +767,14 @@ namespace Week_2__Loops_practice
 
         Console.WriteLine("\n\n");
 
+
+
+
+
+
+
+
+
         // YE OL TEA BAG FLAG
 
 //      ()_____________
@@ -788,60 +802,68 @@ namespace Week_2__Loops_practice
         {
         Console.Write("_");
         }
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write("_");
-        }
         Console.WriteLine();
 
 
         for (int i = 0; i < n/2; i++)
         {
         Console.Write("||");
-        
-       
+
+        for (int l = 0; l < n-2; l++)
+        {
+        Console.Write(" ");
+        }
         Console.Write("\\ \\");
+
+
+        for (int l = 0; l < n-4; l++)
+        {
+        Console.Write(" ");
+        }
+        Console.Write("|");
         
+
+               
+
+        for (int l = 0; l < n/2; l++)
+        {
+        Console.Write(" ");
+        }
+
+        Console.Write("|");
 
         for (int l = 0; l < n; l++)
         {
         Console.Write(" ");
         }
-        Console.Write("|");
-        for (int l = 0; l < n/2; l++)
-        {
-        Console.Write(" ");
-        }
-        Console.Write("|");
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write(" ");
-        }
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write(" ");
-        }
+
+ Console.Write("/ /");
+       
+       
         Console.WriteLine("|");
         }
-        
 
         Console.Write("||");
-        for (int l = 0; l < n; l++)
+        for (int l = 0; l < n-2; l++)
         {
         Console.Write("_");
         }
+
+     
+        Console.Write("\\_\\");
+       
         Console.Write("|");
         for (int l = 0; l < n/2; l++)
         {
-
-
         Console.Write(" ");
         }
+
+
+
         Console.Write("|");
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write("_");
-        }
+
+        Console.Write("/_/");
+
         for (int l = 0; l < n; l++)
         {
         Console.Write("_");
@@ -849,6 +871,8 @@ namespace Week_2__Loops_practice
         Console.WriteLine("|");
 
 
+        if (n > 3)
+        {
         for (int i = 0; i < n/4; i++)
         {
         Console.Write("||");
@@ -866,13 +890,10 @@ namespace Week_2__Loops_practice
         {
         Console.Write(" ");
         }
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write(" ");
-        }
+        
         Console.WriteLine("|");
         }
-
+        }
 
         Console.Write("||");
         for (int l = 0; l < n; l++)
@@ -884,7 +905,7 @@ namespace Week_2__Loops_practice
         {
         Console.Write(" ");
         }
-        for (int l = 0; l < n*2; l++)
+        for (int l = 0; l < n; l++)
         {
         Console.Write("_");
         }
@@ -894,7 +915,8 @@ namespace Week_2__Loops_practice
         for (int i = 0; i < n/2; i++)
         {
         Console.Write("||");
-        for (int l = 0; l < n; l++)
+         Console.Write("/ /");
+                for (int l = 0; l < n; l++)
         {
         Console.Write(" ");
         }
@@ -908,36 +930,45 @@ namespace Week_2__Loops_practice
         {
         Console.Write(" ");
         }
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write(" ");
-        }
+
+         Console.Write("\\ \\");
         Console.WriteLine("|");
         }
 
+ 
 
         Console.Write("||");
-        for (int l = 0; l < n; l++)
+        Console.Write("/_/");
+            for (int l = 0; l < n; l++)
         {
         Console.Write("_");
         }
+
+        
+
         Console.Write("|");
         for (int l = 0; l < n/2; l++)
         {
         Console.Write("_");
         }
         Console.Write("|");
+        
+     
         for (int l = 0; l < n; l++)
         {
         Console.Write("_");
         }
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write("_");
-        }
+           Console.Write("\\_\\"); 
+            
         Console.WriteLine("|");
 
         Console.Write("||");
+
+        Console.WriteLine("\n\n");
+
+
+
+
 
         Console.WriteLine("\n\n");
 
