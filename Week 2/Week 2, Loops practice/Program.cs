@@ -788,63 +788,58 @@ namespace Week_2__Loops_practice
 //      ||
 
         Console.Write("()");
-        for (int l = 0; l < n; l++)
-        {
-        Console.Write("_");
-        }
-        Console.Write("_");
-        for (int l = 0; l < n/2; l++)
-        {
-        Console.Write("_");
-        }
-        Console.Write("_");
-        for (int l = 0; l < n; l++)
+        for (int l = 0; l < n + n/4 + n/6 + 6; l++)
         {
         Console.Write("_");
         }
         Console.WriteLine();
 
 
-        for (int i = 0; i < n/2; i++)
+        for (int i = 1; i < n/2; i++)
         {
+        
         Console.Write("||");
 
-        for (int l = 0; l < n-2; l++)
+
+        for (int l = 1; l < i; l++)
         {
         Console.Write(" ");
         }
         Console.Write("\\ \\");
 
 
-        for (int l = 0; l < n-4; l++)
-        {
-        Console.Write(" ");
-        }
-        Console.Write("|");
-        
-
-               
-
-        for (int l = 0; l < n/2; l++)
+        for (int l = 0; l < n/2 - i; l++)
         {
         Console.Write(" ");
         }
 
         Console.Write("|");
+        for (int l = -1; l < n/4; l++)
+        {
+        Console.Write(" ");
+        }
+        Console.Write("|");
 
-        for (int l = 0; l < n; l++)
+
+        for (int l = 0; l < n/2 - i; l++)
         {
         Console.Write(" ");
         }
 
- Console.Write("/ /");
+        Console.Write("/ /");
        
-       
+        for (int l = 1; l < i; l++)
+        {
+        Console.Write(" ");
+        }
+
+
         Console.WriteLine("|");
         }
 
         Console.Write("||");
-        for (int l = 0; l < n-2; l++)
+
+        for (int l = 1; l < n/2; l++)
         {
         Console.Write("_");
         }
@@ -853,18 +848,15 @@ namespace Week_2__Loops_practice
         Console.Write("\\_\\");
        
         Console.Write("|");
-        for (int l = 0; l < n/2; l++)
+        for (int l = -1; l < n/4; l++)
         {
         Console.Write(" ");
         }
-
-
-
         Console.Write("|");
 
         Console.Write("/_/");
 
-        for (int l = 0; l < n; l++)
+        for (int l = 1; l < n/2; l++)
         {
         Console.Write("_");
         }
@@ -873,65 +865,76 @@ namespace Week_2__Loops_practice
 
         if (n > 3)
         {
-        for (int i = 0; i < n/4; i++)
-        {
         Console.Write("||");
-        for (int l = 0; l < n; l++)
+        for (int l = -2; l < n/2; l++)
         {
         Console.Write(" ");
         }
-        Console.Write(" ");
-        for (int l = 0; l < n/2; l++)
+
+        for (int l = -3; l < n/4; l++)
         {
         Console.Write(" ");
         }
-        Console.Write(" ");
-        for (int l = 0; l < n; l++)
+
+        for (int l = -2; l < n/2; l++)
         {
         Console.Write(" ");
         }
-        
         Console.WriteLine("|");
-        }
         }
 
         Console.Write("||");
-        for (int l = 0; l < n; l++)
+        for (int l = -2; l < n/2; l++)
         {
         Console.Write("_");
         }
-        
-        for (int l = 0; l < n/2+2; l++)
+
+        for (int l = -3; l < n/4; l++)
         {
         Console.Write(" ");
         }
-        for (int l = 0; l < n; l++)
+
+        for (int l = -2; l < n/2; l++)
         {
         Console.Write("_");
         }
         Console.WriteLine("|");
 
 
-        for (int i = 0; i < n/2; i++)
+        for (int i = 1; i < n/2; i++)
         {
         Console.Write("||");
-         Console.Write("/ /");
-                for (int l = 0; l < n; l++)
-        {
-        Console.Write(" ");
-        }
-        Console.Write("|");
-        for (int l = 0; l < n/2; l++)
-        {
-        Console.Write(" ");
-        }
-        Console.Write("|");
-        for (int l = 0; l < n; l++)
+
+        for (int l = 0; l < n/2-i; l++)
         {
         Console.Write(" ");
         }
 
-         Console.Write("\\ \\");
+        Console.Write("/ /");
+        for (int l = 1; l < i; l++)
+        {
+        Console.Write(" ");
+        }
+
+
+        Console.Write("|");
+        for (int l = -1; l < n/4; l++)
+        {
+        Console.Write(" ");
+        }
+        Console.Write("|");
+        for (int l = 1; l < i; l++)
+        {
+        Console.Write(" ");
+        }
+
+        Console.Write("\\ \\");
+
+        for (int l = 0; l < n/2 - i; l++)
+        {
+        Console.Write(" ");
+        }
+
         Console.WriteLine("|");
         }
 
@@ -939,7 +942,7 @@ namespace Week_2__Loops_practice
 
         Console.Write("||");
         Console.Write("/_/");
-            for (int l = 0; l < n; l++)
+        for (int l = 1; l < n/2; l++)
         {
         Console.Write("_");
         }
@@ -947,28 +950,20 @@ namespace Week_2__Loops_practice
         
 
         Console.Write("|");
-        for (int l = 0; l < n/2; l++)
+        for (int l = -1; l < n/4; l++)
         {
         Console.Write("_");
         }
         Console.Write("|");
         
-     
-        for (int l = 0; l < n; l++)
+        for (int l = 1; l < n/2; l++)
         {
         Console.Write("_");
         }
-           Console.Write("\\_\\"); 
-            
+
+        Console.Write("\\_\\");
+
         Console.WriteLine("|");
-
-        Console.Write("||");
-
-        Console.WriteLine("\n\n");
-
-
-
-
 
         Console.WriteLine("\n\n");
 
