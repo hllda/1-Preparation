@@ -26,7 +26,7 @@ namespace list_tutorial
 
         static object Second(List<int> standingPins, List<int> standingPinsCopy)
         {
-            if (standingPinsCopy.Count == 0)
+            if (standingPins.Count == 0)
             {
                 return "/";
             }
@@ -151,7 +151,24 @@ namespace list_tutorial
             
         }
 
-        static void chosenRoll(List<int> standingPins, int number)
+        static void Path(List<int> standingPins, int number)
+        {
+        var rnd = new Random();
+        int path = rnd.Next(0, 101);
+        
+        if (path < 33)
+        {
+        number += 1;
+        }
+
+        if (34 < path && path > 66)
+        {
+        number -= 1;
+        }
+        KnockPinOnPath(standingPins, number);
+        }
+
+        static void KnockPinOnPath(List<int> standingPins, int number)
         {
             if (number == 1)
             {
@@ -170,7 +187,8 @@ namespace list_tutorial
             {
                 if (standingPins.Contains(4))
                 {
-                standingPins.Remove(4);;
+                standingPins.Remove(4);
+                Path(standingPins, number);
                 }
             
                 else
@@ -184,11 +202,13 @@ namespace list_tutorial
                 if (standingPins.Contains(2))
                 {
                 standingPins.Remove(2);
+                Path(standingPins, number);
                 }
             
                 else if (standingPins.Contains(8))
                 {
                 standingPins.Remove(8);
+                Path(standingPins, number);
                 }
 
                 else
@@ -202,11 +222,13 @@ namespace list_tutorial
                 if (standingPins.Contains(1))
                 {
                 standingPins.Remove(1);
+                Path(standingPins, number);
                 }
             
                 else if (standingPins.Contains(5))
                 {
                 standingPins.Remove(5);
+                Path(standingPins, number);
                 }
 
                 else
@@ -220,11 +242,13 @@ namespace list_tutorial
                 if (standingPins.Contains(3))
                 {
                 standingPins.Remove(3);
+                Path(standingPins, number);
                 }
             
                 else if (standingPins.Contains(9))
                 {
                 standingPins.Remove(9);
+                Path(standingPins, number);
                 }
 
                 else
@@ -238,6 +262,7 @@ namespace list_tutorial
                 if (standingPins.Contains(6))
                 {
                 standingPins.Remove(6);
+                Path(standingPins, number);
                 }
             }
 
@@ -277,7 +302,7 @@ namespace list_tutorial
                 Console.WriteLine("\nEnter where to roll the ball (1-7):");
                 string firstText = Console.ReadLine();
                 int first = Int32.Parse(firstText);
-                chosenRoll(standingPins, first);
+                Path(standingPins, first);
                 Console.Clear();
 
                 var standingPinsCopy = new List<int>(standingPins);
@@ -296,7 +321,7 @@ namespace list_tutorial
                 Console.WriteLine("\nEnter where to roll the ball (1-7):");
                 string secondText = Console.ReadLine();
                 int second = Int32.Parse(secondText);
-                chosenRoll(standingPins, second);
+                Path(standingPins, second);
                 Console.Clear();
 
                 Console.WriteLine($"Round: {x}/{round}");
