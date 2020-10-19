@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+
 namespace Day_4_Mission_3_Party_lists
 {
     class Program
@@ -19,8 +20,10 @@ namespace Day_4_Mission_3_Party_lists
 
         } 
 
-        static string WriteAllPermutations(List<string> names)
+        static string WriteAllPermutations(List<string> names, int n)
         {
+            
+            
             if (names.Count == 0)
             {
             return "";
@@ -33,7 +36,17 @@ namespace Day_4_Mission_3_Party_lists
 
             else
             {
+
+            for (int i = 1; i < n; i++)
+                {
+                string name0 = names.Add(string.Concat(names[0], " ", names[1]));
+                }
             
+                       
+            
+
+
+
 
             }
 
@@ -57,7 +70,7 @@ namespace Day_4_Mission_3_Party_lists
         static void Main(string[] args)
         {
 
-            var names = new List<string> {"Hilda", "Anni", "David", "Matej"};
+            var names = new List<string> {"Hilda", "Luna", "Kanel", "Joao"};
             names.Sort();
             string joined = String.Join(", ", names);
             Console.WriteLine($"Signed-up participants: {joined}\n");
