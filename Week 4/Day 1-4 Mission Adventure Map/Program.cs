@@ -25,29 +25,70 @@ namespace Day_1_4_Mission_Adventure_Map
 {
     class Program
     {
-        static void Roads(List<int> Road, int width, int height)
+            static void Rivers(List<int> River, int width, int height)
+            {
+            var random = new Random();
+            int xRiver = width/4 * 3;
+            River.Add(xRiver);
+                for(int i = 0; i < height+width; i++)
+                {   
+                    int chance = random.Next(0,4);
+                    if(chance < 2)
+                    {
+                    River.Add(xRiver);
+                    continue;
+                    }
+
+                    if(chance == 2)
+                    {
+                    xRiver--;
+                    River.Add(xRiver);
+                    continue;
+                    }
+                
+                    if(chance == 3)
+                    {
+                    xRiver++;
+                    River.Add(xRiver);
+                    continue;
+                    }
+                }
+            }
+
+        static void Roads(List<int> Road, List<int> River, int width, int height)
         {
             var random = new Random();
             int xRoad = height/2;
             Road.Add(xRoad);
-            for(int i = 0; i < width; i++)
+            for(int i = 0; i < height+width; i++)
             {   
-                int chance = random.Next(0,4);
-                if((width/4 * 3) - 4 < i && i < (width/4 * 3) + 4)
+                int chance = random.Next(0,6);
+                
+
+                if(xRoad == River[xRoad])
+                {
+                    for(int j = 0; j < 7; j++)
+                    { 
+                    Road.Add(xRoad);
+                    }
+                continue;
+                }
+
+                if((width/4) - 3 < i && i < (width/4) + 3)
                 {  
                 Road.Add(xRoad);
                 continue;
                 }
 
-                if(chance < 2)
+                if(chance <= 3)
                 {
                 Road.Add(xRoad);
                 continue;
                 }
 
-                if(chance == 2)
+                if(chance == 4)
                 {
-                    if(xRoad < height/7)
+                    if(xRoad < height/4)
                     {
                     xRoad++;
                     }
@@ -56,81 +97,78 @@ namespace Day_1_4_Mission_Adventure_Map
                 continue;
                 }
                 
-                if(chance == 3)
+                if(chance == 5)
                 {
-                    if(xRoad > height/7 * 6)
+                    if(xRoad > height/4*3)
                     {
                     xRoad--;
                     }
                 xRoad++;
-                Road.Add(xRoad);
-                continue;
                 }   
             }
         }
 
-        static void Rivers(List<int> River, int width, int height)
+        static void Walls(List<int> Road, List<int> Wall, int width, int height)
         {
             var random = new Random();
-            int xRiver = width/4 * 3;
-            River.Add(xRiver);
-            for(int i = 0; i < height; i++)
+            int xWall = width/4;
+            Wall.Add(xWall);
+            for(int i = 0; i < height+width; i++)
             {   
-                int chance = random.Next(0,4);
-                if(chance < 2)
+                int chance = random.Next(0,11);
+                Wall.Add(xWall);
+                if(Wall[i] == 9)
                 {
-                River.Add(xRiver);
+                xWall--;
+                Wall.Add(xWall);
                 continue;
                 }
 
-                if(chance == 2)
+                if(chance == 9)
                 {
-                xRiver--;
-                River.Add(xRiver);
+                xWall--;
+                Wall.Add(xWall);
                 continue;
                 }
                 
-                if(chance == 3)
+                if(chance == 10)
                 {
-                xRiver++;
-                River.Add(xRiver);
+                xWall++;
+                Wall.Add(xWall);
                 continue;
                 }
+
+                if(chance <= 8)
+                {
+                Wall.Add(xWall);
+                continue;
+                }   
+                Wall.Add(xWall);
             }
         }
 
-        static void Paths(int width, int height)
-        {
-
-        }   
-
-        static void Walls(int width, int height)
-        {
-
-        }
 
         static void DrawMap(int width, int height)
         {  
             var random = new Random();
-            List<int> Road = new List<int> {};
-            Roads(Road, width, height);
             
             List<int> River = new List<int> {};
             Rivers(River, width, height);
 
-            List<int> Path = new List<int> {};
-            Paths(width, height);
-            
+            List<int> Road = new List<int> {};
+            Roads(Road, River, width, height);
+
             List<int> Wall = new List<int> {};
-            Walls(width, height);
+            Walls(Road, Wall, width, height);
+
+          
+            
+            
 
             for (int y = 0; y < height+1; y++)
             {
                 for (int x = 0; x < width+1; x++)
                 {   
-                     
-        
-
                     // DRAW BORDER?
                     if (y == 0 || x == 0 || y == height || x == width)
                     {
@@ -183,7 +221,72 @@ namespace Day_1_4_Mission_Adventure_Map
                     }
 
 
-                    // DRAW FOREST?
+                 
+
+                    // DRAW BRIDGE?
+                    if (((y == Road[x] + 1) || (y == Road[x] - 1)) && ((x > River[y] - 3) && (x < River[y] + 5)))
+                    {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write("=");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                    }
+                    
+
+                    // DRAW RIVER?
+                    if (y != 0 && y != height && x == River[y])
+                    {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("~~~");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    x += 2;
+                    continue;
+                    }
+
+                    // DRAW PATH?
+                    if ((y > Road[x]) && y != height && x == River[y]-5)
+                    {
+                    Console.Write("#");
+                    continue;
+                    }
+                  
+                    // DRAW WALL?
+                    if ((x == Wall[y] && y == Road[x] - 1 || x == Wall[y] && y == Road[x] + 1) && x != Road[x])
+                    {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write("[]");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    x += 1;
+                    continue;
+                    }
+                  
+
+                    if (y != 0 && y != height && x == Wall[y])
+                    {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    if (Wall[y-1] == Wall[y])
+                    { 
+                    Console.Write("||");
+                    }
+
+                    if (Wall[y-1] < Wall[y])
+                    { 
+                    Console.Write(@"\\");
+                    }
+
+                    if (Wall[y-1] > Wall[y])
+                    { 
+                    Console.Write("//");
+                    }
+                   
+                  
+                    Console.ForegroundColor = ConsoleColor.White;
+                    x += 1;
+                    continue;
+                    }
+
+
+                   // DRAW FOREST?
                     if (x == 1 || x < width/4 && x != 0)
                     {
                     int chanceHundred = random.Next(0, 101);
@@ -196,57 +299,6 @@ namespace Day_1_4_Mission_Adventure_Map
                         continue;
                         }  
                     }
-
-                    // DRAW BRIDGE?
-                    if ((y == height/2+1 || y == height/2-1) && (x > (width/4 * 3) - 3 && x < (width/4 * 3) + 5))
-                    {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.Write("=");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    continue;
-                    }
-
-                    // DRAW RIVER?
-                    if (y != 0 && y != height && x == River[y])
-                    {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("~~~");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    x += 2;
-                    continue;
-                    }
-
-               
-
-                    // DRAW PATH?
-                    if (y > 0 && y > height/2 && x == (width/4 * 3) - 5)
-                    {
-                    Console.Write("#");
-                    continue;
-                    }
-                
-                    // DRAW WALL?
-                    
-                    if (x == width / 4 && (y == height/2 + 1 || y == height/2 - 1))
-                    {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.Write("[]");
-                    x += 1;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    continue;
-                    }
-
-                    if (x == width / 4)
-                    {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.Write("||");
-                    x += 1;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    continue;
-                    }
-
-                 
-                
 
 
                     // DRAW SPACE TO SOCIAL DISTANCING
@@ -263,7 +315,8 @@ namespace Day_1_4_Mission_Adventure_Map
         Console.Clear();
         int width = 60;
         int height = 20;
-        DrawMap(width, height);  
+        DrawMap(width, height);
+        Console.ReadKey();
         }
     }
 }
