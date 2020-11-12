@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading;
-
    /*
 1. Prepare all the data
    1.1 Place the Road
@@ -62,49 +61,53 @@ namespace Day_1_4_Mission_Adventure_Map
             Road.Add(xRoad);
             for(int i = 0; i < height+width; i++)
             {   
-                int chance = random.Next(0,6);
-                
+                int chance = random.Next(0,10);
 
-                if(xRoad == River[xRoad])
-                {
-                    for(int j = 0; j < 7; j++)
-                    { 
+                if(xRoad == width/4)
+                {  
+                    for(int j = 0; j < 3; j++)
+                    {
+                    Road.Add(xRoad);
+                    }
+                continue;
+                }
+                
+                if(xRoad == width/4*3)
+                {  
+                    for(int j = 0; j < 10; j++)
+                    {
                     Road.Add(xRoad);
                     }
                 continue;
                 }
 
-                if((width/4) - 3 < i && i < (width/4) + 3)
-                {  
-                Road.Add(xRoad);
-                continue;
-                }
-
-                if(chance <= 3)
-                {
-                Road.Add(xRoad);
-                continue;
-                }
-
-                if(chance == 4)
-                {
-                    if(xRoad < height/4)
-                    {
-                    xRoad++;
-                    }
-                xRoad--;
-                Road.Add(xRoad);
-                continue;
-                }
-                
                 if(chance == 5)
                 {
-                    if(xRoad > height/4*3)
+                    if(xRoad < height/6*5)
                     {
-                    xRoad--;
+                    ++xRoad;
+                    Road.Add(xRoad);
+                    continue;
                     }
-                xRoad++;
-                }   
+
+                Road.Add(xRoad);
+                continue;
+                }
+
+                if(chance == 6)
+                {
+                    if(xRoad > height/6)
+                    {  
+                    --xRoad;
+                    Road.Add(xRoad);
+                    continue;
+                    }
+              
+                Road.Add(xRoad);
+                continue;
+                }
+
+                Road.Add(xRoad);
             }
         }
 
@@ -116,11 +119,14 @@ namespace Day_1_4_Mission_Adventure_Map
             for(int i = 0; i < height+width; i++)
             {   
                 int chance = random.Next(0,11);
-                Wall.Add(xWall);
-                if(Wall[i] == 9)
+                
+                if(xWall == Road[i])
                 {
-                xWall--;
-                Wall.Add(xWall);
+                    Wall.RemoveAt(i);
+                    for(int j = 0; j < 7; j++)
+                    { 
+                    Wall.Add(xWall);
+                    }
                 continue;
                 }
 
@@ -138,12 +144,7 @@ namespace Day_1_4_Mission_Adventure_Map
                 continue;
                 }
 
-                if(chance <= 8)
-                {
-                Wall.Add(xWall);
-                continue;
-                }   
-                Wall.Add(xWall);
+            Wall.Add(xWall);
             }
         }
 
@@ -161,9 +162,6 @@ namespace Day_1_4_Mission_Adventure_Map
             List<int> Wall = new List<int> {};
             Walls(Road, Wall, width, height);
 
-          
-            
-            
 
             for (int y = 0; y < height+1; y++)
             {
@@ -174,31 +172,31 @@ namespace Day_1_4_Mission_Adventure_Map
                     {
                         if (y == 0 && x == 0 || y == height && x == 0)
                         {
-                        Console.Write("+");
+                        Console.Write("┼");
                         continue;
                         }
 
                         if (y == 0 && x != 0 && x != width || y == height && x != 0 && x != width)
                         {
-                        Console.Write("-");
+                        Console.Write("─");
                         continue;
                         }
 
                         if (y == 0 && x == width || y == height && x == width)
                         {
-                        Console.WriteLine("+");
+                        Console.WriteLine("┼");
                         continue;
                         }
 
                         if (x == 0 && y != 0 && y != height)
                         {
-                        Console.Write("|");
+                        Console.Write("│");
                         continue;
                         }
 
                         if (x == width && y != 0 && y != height)
                         {
-                        Console.WriteLine("|");
+                        Console.WriteLine("│");
                         continue;
                         }
                     }
@@ -212,16 +210,12 @@ namespace Day_1_4_Mission_Adventure_Map
                     continue;
                     }
 
-
                     // DRAW ROAD? 
                     if (y == Road[x])
                     {
                     Console.Write("#");
                     continue;
                     }
-
-
-                 
 
                     // DRAW BRIDGE?
                     if (((y == Road[x] + 1) || (y == Road[x] - 1)) && ((x > River[y] - 3) && (x < River[y] + 5)))
@@ -299,7 +293,6 @@ namespace Day_1_4_Mission_Adventure_Map
                         continue;
                         }  
                     }
-
 
                     // DRAW SPACE TO SOCIAL DISTANCING
                      Console.Write(" ");
