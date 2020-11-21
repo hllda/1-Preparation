@@ -1,168 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Threading;
-   /*
-1. Prepare all the data
-   1.1 Place the Road
-   1.2 Place the River
-   1.3 Place the Bridge where the Bridge and River cross paths
-   1.4 Place Path along the River going down from the Road
-
-2. Draw the map
-   2.1 Draw the border going around the map
-   2.2 Draw Title on centered on top
-   2.3 Draw the Road going from left in the middle to right
-   2.4 Draw the Forest on the left quarter of the map
-   2.5 Draw the Bridge 
-   2.6 Draw the River
-   2.7 Draw Path along the River going down from the Road
-   */
 
 namespace Day_1_4_Mission_Adventure_Map
 {
     class Program
-    {
-            static void Rivers(List<int> River, int width, int height)
+    {                  
+        static List<int> GenerateCurve(int width, int height, int start, int curveChance)
+        {
+            // CALCULATE CURVES
+            var random = new Random();
+            var curveValues = new List<int>();
+            int xCurrentCurve = start;
+            for(int y = 0; y < height+width; y++)
             {
-            var random = new Random();
-            int xRiver = width/4 * 3;
-            River.Add(xRiver);
-                for(int i = 0; i < height+width; i++)
-                {   
-                    int chance = random.Next(0,4);
-                    if(chance < 2)
-                    {
-                    River.Add(xRiver);
-                    continue;
-                    }
+                int direction = random.Next(0,curveChance);
 
-                    if(chance == 2)
-                    {
-                    xRiver--;
-                    River.Add(xRiver);
-                    continue;
-                    }
-                
-                    if(chance == 3)
-                    {
-                    xRiver++;
-                    River.Add(xRiver);
-                    continue;
-                    }
-                }
-            }
-
-        static void Roads(List<int> Road, List<int> River, int width, int height)
-        {
-            var random = new Random();
-            int xRoad = height/2;
-            Road.Add(xRoad);
-            for(int i = 0; i < height+width; i++)
-            {   
-                int chance = random.Next(0,10);
-
-                if(xRoad == width/4)
-                {  
-                    for(int j = 0; j < 3; j++)
-                    {
-                    Road.Add(xRoad);
-                    }
-                continue;
-                }
-                
-                if(xRoad == width/4*3)
-                {  
-                    for(int j = 0; j < 10; j++)
-                    {
-                    Road.Add(xRoad);
-                    }
-                continue;
-                }
-
-                if(chance == 5)
+                if(direction == 0 && xCurrentCurve < width-width/10)
                 {
-                    if(xRoad < height/6*5)
-                    {
-                    ++xRoad;
-                    Road.Add(xRoad);
-                    continue;
-                    }
-
-                Road.Add(xRoad);
-                continue;
+                xCurrentCurve++;
                 }
 
-                if(chance == 6)
+                if(direction == 1 && xCurrentCurve > width/10)
                 {
-                    if(xRoad > height/6)
-                    {  
-                    --xRoad;
-                    Road.Add(xRoad);
-                    continue;
-                    }
-              
-                Road.Add(xRoad);
-                continue;
+                xCurrentCurve--;
                 }
-
-                Road.Add(xRoad);
+                curveValues.Add(xCurrentCurve);
             }
+            return curveValues;
         }
-
-        static void Walls(List<int> Road, List<int> Wall, int width, int height)
-        {
-            var random = new Random();
-            int xWall = width/4;
-            Wall.Add(xWall);
-            for(int i = 0; i < height+width; i++)
-            {   
-                int chance = random.Next(0,11);
-                
-                if(xWall == Road[i])
-                {
-                    Wall.RemoveAt(i);
-                    for(int j = 0; j < 7; j++)
-                    { 
-                    Wall.Add(xWall);
-                    }
-                continue;
-                }
-
-                if(chance == 9)
-                {
-                xWall--;
-                Wall.Add(xWall);
-                continue;
-                }
-                
-                if(chance == 10)
-                {
-                xWall++;
-                Wall.Add(xWall);
-                continue;
-                }
-
-            Wall.Add(xWall);
-            }
-        }
-
 
         static void DrawMap(int width, int height)
-        {  
+        {   
             var random = new Random();
-            
-            List<int> River = new List<int> {};
-            Rivers(River, width, height);
+           
+            // RIVER CALCULATION
+            int xRiver = width/4 * 3;
+            List<int> River = GenerateCurve(width, height, xRiver, 4);
+ 
+            // WALL CALCULATION
+            int xWall = width/4;
+            List<int> Wall = GenerateCurve(width, height, xWall, 21);
 
+            // ROAD CALCULATION
             List<int> Road = new List<int> {};
-            Roads(Road, River, width, height);
+            int yRoad = height/2;
+            for(int x = 0; x < width+height; x++)
+            {   
+                int direction = random.Next(0,11);
+                Road.Add(yRoad);
+                
+                if(Wall[yRoad] - 1 <= x && x <= Wall[yRoad] + 1)
+                {
+                continue;
+                }
+                
+                if (River[yRoad] - 3  <= x && x <= River[yRoad] + 4)
+                {
+                continue;
+                }
 
-            List<int> Wall = new List<int> {};
-            Walls(Road, Wall, width, height);
-
-
+                if(direction == 0 && yRoad < height-height/10)
+                { 
+                yRoad++;
+                continue;
+                }
+                    
+                if(direction == 1 && yRoad > height/10)
+                { 
+                yRoad--;
+                continue;
+                }  
+            }
+            // HERE IS WHERE THE DRAWING ITSELF IS DONE
+            int twoPillars = 2;
             for (int y = 0; y < height+1; y++)
             {
                 for (int x = 0; x < width+1; x++)
@@ -176,15 +90,15 @@ namespace Day_1_4_Mission_Adventure_Map
                         continue;
                         }
 
-                        if (y == 0 && x != 0 && x != width || y == height && x != 0 && x != width)
-                        {
-                        Console.Write("─");
-                        continue;
-                        }
-
                         if (y == 0 && x == width || y == height && x == width)
                         {
                         Console.WriteLine("┼");
+                        continue;
+                        }
+                        
+                        if (y == 0 && x != 0 && x != width || y == height && x != 0 && x != width)
+                        {
+                        Console.Write("─");
                         continue;
                         }
 
@@ -218,7 +132,7 @@ namespace Day_1_4_Mission_Adventure_Map
                     }
 
                     // DRAW BRIDGE?
-                    if (((y == Road[x] + 1) || (y == Road[x] - 1)) && ((x > River[y] - 3) && (x < River[y] + 5)))
+                    if (((y == Road[x] + 1) || (y == Road[x] - 1)) && (River[y] - 3 < x) && (x < River[y] + 5))
                     {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.Write("=");
@@ -226,9 +140,8 @@ namespace Day_1_4_Mission_Adventure_Map
                     continue;
                     }
                     
-
                     // DRAW RIVER?
-                    if (y != 0 && y != height && x == River[y])
+                    if (x == River[y])
                     {
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("~~~");
@@ -243,81 +156,131 @@ namespace Day_1_4_Mission_Adventure_Map
                     Console.Write("#");
                     continue;
                     }
-                  
+                    
                     // DRAW WALL?
-                    if ((x == Wall[y] && y == Road[x] - 1 || x == Wall[y] && y == Road[x] + 1) && x != Road[x])
+                    if (((((x == Wall[y]) || (x-1==Wall[y])) && y == Road[x] - 1) || (((x == Wall[y]) || (x-1==Wall[y])) && y == Road[x] + 1)) && twoPillars != 0)
                     {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.Write("[]");
                     Console.ForegroundColor = ConsoleColor.White;
                     x += 1;
+                    twoPillars--;
                     continue;
                     }
-                  
 
                     if (y != 0 && y != height && x == Wall[y])
                     {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    if (Wall[y-1] == Wall[y])
-                    { 
-                    Console.Write("||");
-                    }
 
-                    if (Wall[y-1] < Wall[y])
-                    { 
-                    Console.Write(@"\\");
-                    }
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        if (Wall[y-1] < Wall[y])
+                        { 
+                        Console.Write(@"\\");
+                        }
 
-                    if (Wall[y-1] > Wall[y])
-                    { 
-                    Console.Write("//");
-                    }
+                        if (Wall[y-1] > Wall[y])
+                        { 
+                        Console.Write("//");
+                        }
                    
-                  
+                        if (Wall[y-1] == Wall[y])
+                        { 
+                        Console.Write("||");
+                        }
+
                     Console.ForegroundColor = ConsoleColor.White;
                     x += 1;
                     continue;
                     }
 
-
-                   // DRAW FOREST?
+                    // DRAW FOREST?
                     if (x == 1 || x < width/4 && x != 0)
                     {
                     int chanceHundred = random.Next(0, 101);
-                        if (100/(x*1) >= chanceHundred|| x <= 2)
+                        if (100/(x*1) >= chanceHundred || x <= 2)
                         {
                         List<string> treeList = new List<string>{"A", "^", "¤", "Ä", "Å", "Y", "0"};
-                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        int randomColor = random.Next(0,2);
+
+                        if (randomColor == 0) Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        if (randomColor == 1) Console.ForegroundColor = ConsoleColor.Green; 
+
                         Console.Write(treeList[random.Next(0, treeList.Count)]);
                         Console.ForegroundColor = ConsoleColor.White;
                         continue;
                         }  
                     }
 
-                    // DRAW SPACE TO SOCIAL DISTANCING
-                     Console.Write(" ");
+                    // DRAW LAKE?
+                    if (((y > height / 6 - height/15 && y < height / 6 + height/7 && x > width / 9 * 4 - width/16  && x < width / 9 * 4 + width/6) || (y > height / 6 - height/10 && y < height / 6 + height/6 && x > width / 9 * 4 - width/20  && x < width / 9 * 4 + width/8)) && (y < Road[x]))
+                    {
+                    // DRAW LILYPAD IN LAKE
+                    int lilypadSpawn = random.Next(0, 11); 
+                    if (lilypadSpawn == 0)
+                    {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    int lilypadFlowerSpawn = random.Next(0,4);
+                    if (lilypadFlowerSpawn == 0)
+                    { 
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("*");
+                    x++;
+                    continue;
+                    }
 
+                    else continue;
+                    }
+                    // DRAW WATER IN LAKE
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("~");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                    }
+
+
+                    // DRAW PINETREE?
+                    int treeSpawn = random.Next(0, 201);
+                    if (treeSpawn == 0)
+                    {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("A");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                    }
+
+                    // DRAW FLOWER?
+                    int flowerSpawn = random.Next(0,4);
+                    int flowerColor = random.Next(0,6);
+                    if (flowerSpawn == 0 && y > Road[x]+2 && x > River[y]+4)
+                    {
+                    if (flowerColor == 0) Console.ForegroundColor = ConsoleColor.Yellow;
+                    if (flowerColor == 1) Console.ForegroundColor = ConsoleColor.Red;
+                    if (flowerColor == 2) Console.ForegroundColor = ConsoleColor.Blue;
+                    if (flowerColor == 3) Console.ForegroundColor = ConsoleColor.DarkRed;
+                    if (flowerColor == 4) Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.Write("*");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                    }
+                    // DRAW SPACE FOR SOCIAL DISTANCING
+                    Console.Write(" ");
                 }  
-            }
-           
+            }  
         }
-
         static void Main(string[] args)
         {
-        Console.BackgroundColor = ConsoleColor.Black;
-        Console.Clear();
-        int width = 60;
-        int height = 20;
-        DrawMap(width, height);
-        Console.ReadKey();
-        }
-    }
-}
+            Console.Clear();
 
+            // MAP SIZE
+            int width = 50;
+            int height = 25;
 
+            // DRAWING OF THE MAP
+            DrawMap(width, height);
 
-        
-
-
-
-
+            Console.ReadKey();
+        }  
+    } 
+} 
