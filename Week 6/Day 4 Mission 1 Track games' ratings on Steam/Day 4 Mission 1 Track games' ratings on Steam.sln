@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 4 Mission 1 Track games' ratings on Steam", "Day 4 Mission 1 Track games' ratings on Steam.csproj", "{11053B7A-5B99-4C76-9721-4D4346FFA3FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11053B7A-5B99-4C76-9721-4D4346FFA3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11053B7A-5B99-4C76-9721-4D4346FFA3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11053B7A-5B99-4C76-9721-4D4346FFA3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11053B7A-5B99-4C76-9721-4D4346FFA3FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {778BD5B0-E008-4F8B-8E7F-84E657170B6B}
+	EndGlobalSection
+EndGlobal
