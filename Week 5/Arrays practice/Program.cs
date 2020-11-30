@@ -6,7 +6,6 @@ namespace Arrays_practice
     {
         static void Main(string[] args)
         {
-        
         // PART 1
         Console.WriteLine("PART 1");
         // 1
@@ -20,30 +19,58 @@ namespace Arrays_practice
             }
         Console.WriteLine($"\n\n");
 
+
         // 2
         Console.WriteLine(2);
-        string[] monthdays = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-            Console.Write("Days this month are:");
-            
-            
-        for (int i = 0; i < 30; i++)
-        {
-        Console.Write(monthdays[i]);
-        if (i < monthdays.Length-1) Console.Write(", ");
-        }
+        string[] monthdays = new string[31];
+ 
+        Console.Write("Days this month are: ");
+        int cycle = 1;    
+        for (int i = 0; i < 31; i++)
+            {
+            if (cycle > 6) cycle = 0;
+            monthdays[i] = weekdays[cycle];
+            cycle++;
+            }
+
+        for (int i = 1; i < 31+1; i++)
+            {
+            Console.Write($"{i}: {monthdays[i-1]}");
+            if (i < 31) Console.Write(", ");
+            }
         Console.WriteLine($"\n\n");
           
 
         
         // 3
         Console.WriteLine(3);
-             Console.Write("x random numbers are:");
+        var Random = new Random();
+        int arrayLength = Random.Next(5,11);
+        
+        double[] arrayOfDoubles = new double[arrayLength];
+        for (int i = 0; i < arrayLength; i++)
+            {
+            double randomDouble = Random.Next(1,11);
+            arrayOfDoubles[i] = randomDouble;
+            }
+            Console.Write($"{arrayLength} random numbers are: ");
+            
+        for (int i = 0; i < arrayLength; i++)
+            {
+            Console.Write($"{arrayOfDoubles[i]}");
+            if (i < arrayLength-1) Console.Write(", ");
+            } 
+        Console.WriteLine($"\n\n");   
 
-
-        Console.WriteLine();
 
         // 4
         Console.WriteLine(4);
+        double[] interpolated = new double[arrayLength];
+
+
+
+
+
         Console.WriteLine();
 
         Console.WriteLine($"\n\n");
