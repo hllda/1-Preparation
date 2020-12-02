@@ -3,6 +3,21 @@ namespace Arrays_practice
 {
     class Program
     {
+        static int Recursion(char[,] chess, int chessY, int chessX)
+        {
+        chess[chessX, chessY] = '0';
+        chess[chessX + 1, chessY + 2] = '1';
+        chess[chessX + 1, chessY - 2] = '1';
+        chess[chessX - 1, chessY - 2] = '1';
+        chess[chessX - 1, chessY + 2] = '1';
+        chess[chessX + 2, chessY + 1] = '1';
+        chess[chessX + 2, chessY - 1] = '1';
+        chess[chessX - 2, chessY - 1] = '1';
+        chess[chessX - 2, chessY + 1] = '1';
+        Recursion(chess, chessY, chessX);
+        return 'd';
+        }
+        
         static void Main(string[] args)
         {
         var Random = new Random();
@@ -144,14 +159,21 @@ namespace Arrays_practice
 
         // 4
         Console.WriteLine(4);
-        int[,] chess = new int[8, 8];
+        char[,] chess = new char[8, 8];
+
         for (int y = 0; y < 8; y++)
         {
             for (int x = 0; x < 8; x++)
             {
-            chess[x, y] = 0;
+            chess[x, y] = '#';
             }
         }
+
+        int chessY = Random.Next(0,8); 
+        int chessX = Random.Next(0,8);
+
+        chess[chessX, chessY] = '0';
+        Recursion(chess, chessY, chessX);
 
         for (int y = 0; y < 8; y++) 
         {
@@ -161,8 +183,8 @@ namespace Arrays_practice
             }
             Console.WriteLine();
         }
+        Console.WriteLine($"\n\n");
 
-        Console.WriteLine();
 
         // 5
         Console.WriteLine(5);
@@ -184,6 +206,7 @@ namespace Arrays_practice
             Console.WriteLine();
         }
         Console.WriteLine($"\n\n");
+
 
         // PART 3
         Console.WriteLine("PART 3");
