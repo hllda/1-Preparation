@@ -3,19 +3,39 @@ namespace Arrays_practice
 {
     class Program
     {
-        static int Recursion(char[,] chess, int chessY, int chessX)
+        static void tac(int[,] tic)
         {
-        chess[chessX, chessY] = '0';
-        chess[chessX + 1, chessY + 2] = '1';
-        chess[chessX + 1, chessY - 2] = '1';
-        chess[chessX - 1, chessY - 2] = '1';
-        chess[chessX - 1, chessY + 2] = '1';
-        chess[chessX + 2, chessY + 1] = '1';
-        chess[chessX + 2, chessY - 1] = '1';
-        chess[chessX - 2, chessY - 1] = '1';
-        chess[chessX - 2, chessY + 1] = '1';
-        Recursion(chess, chessY, chessX);
-        return 'd';
+
+
+
+        tac(tic);
+        }
+
+        static void Recursion(int[,] chess, int chessX, int chessY, int moves)
+        {
+
+        if (chessX < 0 || chessX > 7 || chessY < 0 || chessY > 7) 
+        {
+        return;
+        }
+
+        if (chess[chessX, chessY] < moves)
+        {
+        return;
+        }
+
+        chess[chessX, chessY] = moves;
+
+        if (moves > 10) return;
+        Recursion(chess, chessX + 1, chessY + 2, moves + 1);
+        Recursion(chess, chessX + 1, chessY - 2, moves + 1);
+        Recursion(chess, chessX - 1, chessY - 2, moves + 1);
+        Recursion(chess, chessX - 1, chessY + 2, moves + 1);
+
+        Recursion(chess, chessX + 2, chessY + 1, moves + 1);
+        Recursion(chess, chessX + 2, chessY - 1, moves + 1);
+        Recursion(chess, chessX - 2, chessY - 1, moves + 1);
+        Recursion(chess, chessX - 2, chessY + 1, moves + 1);
         }
         
         static void Main(string[] args)
@@ -159,21 +179,21 @@ namespace Arrays_practice
 
         // 4
         Console.WriteLine(4);
-        char[,] chess = new char[8, 8];
-
-        for (int y = 0; y < 8; y++)
+        int[,] chess = new int[8, 8];
+        int chessY = Random.Next(0,8); 
+        int chessX = Random.Next(0,8);
+        int moves = 0;
+        
+        for (int x = 0; x < 8; x++) 
         {
-            for (int x = 0; x < 8; x++)
+            for (int y = 0; y < 8; y++)   
             {
-            chess[x, y] = '#';
+            chess[x, y] = int.MaxValue;
             }
         }
 
-        int chessY = Random.Next(0,8); 
-        int chessX = Random.Next(0,8);
-
-        chess[chessX, chessY] = '0';
-        Recursion(chess, chessY, chessX);
+        chess[chessX, chessY] = moves;
+        Recursion(chess, chessX, chessY, moves);
 
         for (int y = 0; y < 8; y++) 
         {
@@ -197,6 +217,10 @@ namespace Arrays_practice
             }
         }
 
+        tac(tic, );
+        {
+        for (int z = 0; z < 3; z++)
+        { 
         for (int y = 0; y < 3; y++) 
         {
             for (int x = 0; x < 3; x++)   
@@ -206,7 +230,7 @@ namespace Arrays_practice
             Console.WriteLine();
         }
         Console.WriteLine($"\n\n");
-
+        }
 
         // PART 3
         Console.WriteLine("PART 3");
