@@ -403,31 +403,177 @@ namespace Arrays_practice
             Console.WriteLine("PART 3");
             // 1
             Console.WriteLine(1);
+            int february = DateTime.DaysInMonth(today.Year, 2);
+            
+            string[][] year = new string[12][];
+            year[0] = new string[31];
+            year[1] = new string[february];
+            year[2] = new string[31];
+            year[3] = new int[30];
+            year[4] = new int[31];
+            year[5] = new int[30];
+            year[6] = new int[31];
+            year[7] = new int[31];
+            year[8] = new int[30];
+            year[9] = new int[31];
+            year[10] = new int[30];
+            year[11] = new int[31];
 
+            Console.Write("Weekdays this year: ");
+            
 
+            var thisToday = DateTime.Today;
+           
+
+            string[] everyDay = new string[daysInMonth];
         
-            int[,] wowie = new int[3, 3];
-            string[] a = {};
-            Console.WriteLine();
+            weekday = month.ToString("ddd");
+
+            for (int i = 0; i < daysInMonth; i++)
+            {    
+            monthdays[i] = month.ToString("d");
+            Console.WriteLine($"{i+1}: {monthdays[i]}");
+            month = month.AddDays(1);
+            }
+
+            string[] weekd = {"M", "T", "W", "T", "F", "S", "S"};
+            int cycle = 3;
+            for (int i = 0; i < 12; i++)
+            {
+
+            int thisMonth = DateTime.DaysInMonth(today.Year, i+1);
+                for (int j = 0; j < thisMonth; j++)
+                {
+                year[i][j] = weekd[cycle];
+                }
+                Console.WriteLine();
+            }
+
+
+            for (int i = 0; i < 12; i++)
+            {
+            int thisMonth = DateTime.DaysInMonth(today.Year, i+1);
+                for (int j = 0; j < thisMonth; j++)
+                {
+                Console.Write($"{year[i][j]}");
+                }
+                Console.WriteLine();
+            }
+            
+            /*
+                  
+            string[] weekdays = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+            Console.Write("Days of the week are: ");
+            for (int i = 0; i < weekdays.Length; i++)
+                {
+                Console.Write(weekdays[i]);
+                if (i < weekdays.Length-1) Console.Write(", ");
+                }
+            
+
+            var today = DateTime.Today;
+            var month = new DateTime(today.Year, today.Month, 1);
+
+            int daysInMonth = DateTime.DaysInMonth(today.Year, today.Month);
+            string[] monthdays = new string[daysInMonth];
+        
+            Console.WriteLine("Days this month are: "); 
+            string weekday = month.ToString("dddd");
+
+            for (int i = 0; i < daysInMonth; i++)
+            {    
+            monthdays[i] = month.ToString("ddd");
+            Console.WriteLine($"{i+1}: {monthdays[i]}");
+            month = month.AddDays(1);
+            }
+          
+            */
+
+            Console.WriteLine($"\n\n");
         
             // 2
             Console.WriteLine(2);
-            Console.WriteLine();
+            Console.WriteLine($"\n\n");
         
             // 3
             Console.WriteLine(3);
-            Console.WriteLine();
+            Console.WriteLine($"\n\n");
 
             // 4
             Console.WriteLine(4);
-            Console.WriteLine();
+            Console.WriteLine($"\n\n");
 
             // 5
             Console.WriteLine(5);
-            Console.WriteLine();
+            Console.WriteLine($"\n\n");
 
 
-
+        
+        
         }
     }
 }
+
+
+/*
+
+Part 3
+Complete the following assignments:
+Create a jagged array that holds each day of the year organized by months. Fill the day of the week letters (M, T, W, T, F, S, S) into the places. Output the jagged array.
+WTFSSMTWTFSSMTWTFSSMTWTFSSMTWTF
+SSMTWTFSSMTWTFSSMTWTFSSMTWTFS
+SMTWTFSSMTWTFSSMTWTFSSMTWTFSSMT
+WTFSSMTWTFSSMTWTFSSMTWTFSSMTWT
+FSSMTWTFSSMTWTFSSMTWTFSSMTWTFSS
+MTWTFSSMTWTFSSMTWTFSSMTWTFSSMT
+WTFSSMTWTFSSMTWTFSSMTWTFSSMTWTF
+SSMTWTFSSMTWTFSSMTWTFSSMTWTFSSM
+TWTFSSMTWTFSSMTWTFSSMTWTFSSMTW
+TFSSMTWTFSSMTWTFSSMTWTFSSMTWTFS
+SMTWTFSSMTWTFSSMTWTFSSMTWTFSSM
+TWTFSSMTWTFSSMTWTFSSMTWTFSSMTWT
+
+
+
+Create an array of people, between 15–25 of them. Assign a letter of the alphabet to each one (starting at A onwards). Now create between 3–7 teams and distribute the people into the teams as evenly as possible. The result is a jagged array with a list of people for each team.
+Team 1: A, B, C, D, E, F
+Team 2: G, H, I, J, K, L
+Team 3: M, N, O, P, Q
+Team 4: R, S, T, U, V
+
+
+
+Pick a random person from each team to participate in a race.
+Contestants: C, L, N, T
+
+
+
+Create a football field of random width and height between 3–5. Create a jagged array where each team has a 2D array of characters indicating where in the field a person in the team stands (char[][,]). For each team, place people randomly on the field.
+Team 1:
+BD.C.
+F..E.
+...A.
+
+Team 2:
+..IG.
+....H
+.KLJ.
+
+Team 3:
+Q....
+PNO..
+..M..
+
+Team 4:
+U....
+.T.S.
+.V..R
+
+
+
+Create a 2D array of booleans indicating if there was any person from any team standing on that place of the field.
+####.
+#####
+.####
+
+ */
