@@ -481,10 +481,11 @@ namespace Arrays_practice
         double methUp = Math.Floor(meth);
         double methDown = Math.Ceiling(meth);
         
+
         
-        for(int i =  1; i < teams+1; i++)
+        for(int i =  0; i < teams; i++)
         {
-            for(int j =  1; j < teams+1; j++)
+            for(int j =  0; j < teams; j++)
             {
             team[i][j] = players[j];
             }
