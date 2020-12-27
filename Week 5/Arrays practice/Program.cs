@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 
 namespace Arrays_practice
 {
     class Program
     {
-    static int tac(char[,] tic,  int empty)
+    static int Tac(char[,] tic,  int empty)
     {
         var Random = new Random();    
         int win = 69;
@@ -370,7 +371,7 @@ namespace Arrays_practice
             }
         }
            
-        int win = tac(tic, empty);  
+        int win = Tac(tic, empty);  
 
         string direction = "error";
         if (win == 1 || win == 2) direction = "vertically";
@@ -459,113 +460,176 @@ namespace Arrays_practice
 
         // 2
         Console.WriteLine(2);
+        int people = Random.Next(15, 26);
+        int teamAmount = Random.Next(3, 8);
 
-        int people = Random.Next(15, 25);
         string[] players = new string[people];
-            
+        string[][] teams = new string[teamAmount][]; 
+
+        char alphabetChar = 'A';
+        string alphabetString = char.ToString(alphabetChar); 
+
+        int distribution = people / teamAmount;
+        int remainder = people % teamAmount;
+
         for(int i = 0; i < people; i++)
         {
-
+        players[i] = alphabetString;
+        alphabetChar++;
+        alphabetString = char.ToString(alphabetChar); 
         }
 
+        for(int i = 0; i < teamAmount; i++)
+        {
+        if(i < remainder) teams[i] = new string[distribution + 1];
+        else teams[i] = new string[distribution];
+        }
 
-        int teams = Random.Next(3, 8);
-        string[][] team = new string[teams][];
+        int counter = 0;
 
-        for(int i =  1; i < teams+1; i++)
+        for(int i = 0; i < teamAmount; i++)
+        {
+            for(int j = 0; j < teams[i].Length; j++)
+            {
+            
+            teams[i][j] = players[counter];
+            counter++;
+
+            }
+        }
+
+        for(int i = 1; i < teamAmount+1; i++)
         {
         Console.WriteLine($"Team {i}:");
+        Console.WriteLine(string.Join(", ",teams[i-1]));
+        Console.WriteLine();
+        }
+        Console.WriteLine($"\n\n");
+        
+        // 3
+        Console.WriteLine(3);
+        string[]race = new string[teamAmount]; 
+        
+        for(int i = 0; i < teamAmount; i++)
+        {
+        int member = Random.Next(0, teams[i].Length-1);
+        race[i] = teams[i][member];
+        }
+        string racing = string.Join(", " ,race);
+        Console.WriteLine($"Contestants: {racing}");
+        Console.WriteLine($"\n\n");
+
+
+        // 4
+        Console.WriteLine(4);
+
+        int height = Random.Next(3,6);
+        int width = Random.Next(3,6);
+
+        char[][,]field = new char[teamAmount][,];
+
+        for(int i = 0; i < teamAmount; i++)
+        { 
+        field[i] = new char[height, width];
         }
 
-        double meth = people/teams;
-        double methUp = Math.Floor(meth);
-        double methDown = Math.Ceiling(meth);
+        for(int t = 0; t < teamAmount; t++)
+        { 
+            for(int i = 0; i < height; i++)
+            { 
+                for(int j = 0; j < width; j++)
+                {
+                field[t][i, j] = '.';
+                }
+            }
+        }
         
+        int c = 0; 
+        for(int t = 0; t < teamAmount; t++)
+        {    
+            for(int i = 0; i < teams[t].Length; i++)
+            {   
+                int fieldY = Random.Next(0,height);
+                int fieldX = Random.Next(0,width);
+                tryagain:
+                for(int j = 0; j < 1; j++)
+                {
+                fieldY = Random.Next(0,height);
+                fieldX = Random.Next(0,width);
+                }
+                
+                if(field[t][fieldY,fieldX] == '.')
+                {
+                field[t][fieldY, fieldX] = Convert.ToChar(players[c]);
+                }
 
-        
-        for(int i =  0; i < teams; i++)
-        {
-            for(int j =  0; j < teams; j++)
-            {
-            team[i][j] = players[j];
+                else
+                {
+                goto tryagain;
+                }
+                c++;
             }
         }
 
-        for(int i =  1; i < teams+1; i++)
-        {
-            for(int j =  1; j < teams+1; j++)
-            {
-            Console.WriteLine(team[i][j]);
+        for(int t = 1; t < teamAmount+1; t++)
+        { 
+            Console.WriteLine($"Team: {t}");
+            for(int i = 0; i < height; i++)
+            { 
+                for(int j = 0; j < width; j++)
+                {
+              
+                Console.Write($"{field[t-1][i,j]} ");
+                }
+            Console.WriteLine();
             }
+            Console.WriteLine();
+        }
+        Console.WriteLine($"\n\n");
+
+
+        // 5
+        Console.WriteLine(5);
+        bool[,]fielding = new bool[height,width];
+
+        for(int i = 0; i < height; i++)
+        {    
+            for(int j = 0; j < width; j++)
+            {
+            fielding[i,j] = false;
+            } 
+        }
+
+        for(int j = 0; j < height; j++)
+        {   
+            for(int k = 0; k < width; k++)
+            {     
+                for(int i = 0; i < teamAmount; i++)
+                {    
+                    if(field[i][j, k] == '.')
+                    {
+                    continue;
+                    }
+
+                    fielding[j, k] = true;
+                }
+            }
+        }   
+
+        Console.WriteLine($"Taken Positions:");
+        for(int i = 0; i < height; i++)
+        { 
+            for(int j = 0; j < width; j++)
+            {
+            if(fielding[i,j] == true) Console.Write("X ");
+            if(fielding[i,j] == false) Console.Write(". ");
+            }
+        Console.WriteLine();
         }
 
 
 
         /*
-        
-        Create an array of people, 
-        between 15–25 of them.
-
-        Assign a letter of the alphabet to each one (starting at A onwards). 
-        Now create between 3–7 teams and distribute the people into the teams as evenly as possible. 
-        The result is a jagged array with a list of people for each team.
-        Team 1: A, B, C, D, E, F
-        Team 2: G, H, I, J, K, L
-        Team 3: M, N, O, P, Q
-        Team 4: R, S, T, U, V
-
-        */
-
-        Console.WriteLine($"\n\n");
-        
-        // 3
-        Console.WriteLine(3);
-        Console.WriteLine($"\n\n");
-
-        // 4
-        Console.WriteLine(4);
-        Console.WriteLine($"\n\n");
-
-        // 5
-        Console.WriteLine(5);
-        Console.WriteLine($"\n\n");
-
-
-        
-        
-        }
-    }
-}
-
-
-/*
-
-
-Pick a random person from each team to participate in a race.
-Contestants: C, L, N, T
-
-
-
-Create a football field of random width and height between 3–5. Create a jagged array where each team has a 2D array of characters indicating where in the field a person in the team stands (char[][,]). For each team, place people randomly on the field.
-Team 1:
-BD.C.
-F..E.
-...A.
-
-Team 2:
-..IG.
-....H
-.KLJ.
-
-Team 3:
-Q....
-PNO..
-..M..
-
-Team 4:
-U....
-.T.S.
-.V..R
 
 
 
@@ -575,3 +639,12 @@ Create a 2D array of booleans indicating if there was any person from any team s
 .####
 
  */
+
+
+        
+        
+        }
+    }
+}
+
+
