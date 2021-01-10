@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-
-namespace Day_1_Mission_1_Monster_names
+namespace Day_1_Mission_3_High_Number_Of_Rolls
 {
     class Program
     {
@@ -19,7 +18,7 @@ namespace Day_1_Mission_1_Monster_names
 
                 Console.Write($"{info[0]} - 10+ dice rolls: ");
                 
-                string pattern = "((\\d\\d)d\\d+.\\d*)";
+                string pattern = "((\\d{2})d\\d+.\\d*)";
                 if(Regex.IsMatch(info[2], pattern))
                 {
                     Console.Write("True");
@@ -35,4 +34,3 @@ namespace Day_1_Mission_1_Monster_names
         }
     }
 }
-

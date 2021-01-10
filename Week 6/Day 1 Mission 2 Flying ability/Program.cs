@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-namespace Day_1_Mission_1_Monster_names
+namespace Day_1_Mission_2_Flying_Ability
 {
     class Program
     {
