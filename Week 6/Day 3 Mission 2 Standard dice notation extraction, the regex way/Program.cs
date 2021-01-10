@@ -42,6 +42,58 @@ namespace Day_3_Mission_2_Standard_dice_notation_extraction_the_regex_way
             else
                 return false;
         }
+        
+        
+         static void Throwing(string diceNotation)
+        {
+            try
+            {
+                DiceRoll(diceNotation);
+
+                Console.Write($"Throwing {diceNotation}:");
+
+                for(int total = 0; total < 10; total++)
+                {
+                    Console.Write($" {DiceRoll(diceNotation)}");
+                }
+
+            }
+
+            catch(Exception e)
+            {
+                Console.Write($"Can't throw {diceNotation}; {e.Message}");
+            }
+
+            finally
+            {
+                Console.WriteLine($"\n");
+            }
+
+        }
+        static void Main()
+        {
+            Console.WriteLine("Hello World!");
+            Throwing("2d6");
+            Throwing("36");
+            Throwing("-12");
+            Throwing("ad6");
+            Throwing("-3d6");
+            Throwing("0d6");
+            Throwing("d+");
+            Throwing("2d-4");
+            Throwing("2d2.5");
+            Throwing("2d$");
+            Throwing("5d6+5");
+            Throwing("2d10-5");
+            Console.WriteLine();
+        }
+        
+        
+        
+        
+        
+        
+        
         static void Main(string[] args)
         {
             for(int variations = 0; variations < 5; variations++)
