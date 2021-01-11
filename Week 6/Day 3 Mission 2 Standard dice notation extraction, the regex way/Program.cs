@@ -16,25 +16,38 @@ namespace Day_3_Mission_2_Standard_dice_notation_extraction_the_regex_way
             int diceRoll = roll + fixedBonus;
             return diceRoll;
         }
+
         static int DiceRoll(string diceNotation)
-        {            
+        {
             // INITIATING STANDARD VALUES
             int numberRolls = 1;
             int diceSides = 1;
             int fixedBonus = 0;
 
+            string pattern = @"^([1-9]|\d\d)?d(\d+)([+|-]*\d*)$";
+            Match matches = Regex.Match(diceNotation,pattern);
 
-            string pattern = "(\\d+)d(\\d+)([+|-]?\\d*)";
-            MatchCollection matches = Regex.Matches(diceNotation, pattern);
+            try
+            {
+                numberRolls = Int32.Parse(matches.Groups[1].ToString());
+            }catch{}
 
-            Console.WriteLine("Match: {0}, matches.Value");
+            try
+            {
+                diceSides = Int32.Parse(matches.Groups[2].ToString());
+            }catch{}
 
+            try
+            {
+                fixedBonus = Int32.Parse(matches.Groups[3].ToString());
+            }catch{}
 
-            return DiceRoll(numberRolls,diceSides,fixedBonus);
+            return DiceRoll(numberRolls, diceSides, fixedBonus);
         }
+
         static bool IsStandardDiceNotation(string diceNotation)
         {
-            string pattern = "^\\d+d\\d[+|-]*\\d*$";
+            string pattern = @"^([1-9]|\d\d)?d(\d+)([+|-]*\d*)$";
 
             if(Regex.IsMatch(diceNotation,pattern))
                 return true;
@@ -42,38 +55,39 @@ namespace Day_3_Mission_2_Standard_dice_notation_extraction_the_regex_way
             else
                 return false;
         }
-        
-        
-         static void Throwing(string diceNotation)
+
+        static void Throwing(string diceNotation)
         {
-            try
+
+            if(IsStandardDiceNotation(diceNotation) == true)
             {
                 DiceRoll(diceNotation);
 
-                Console.Write($"Throwing {diceNotation}:");
+                Console.WriteLine($"Throwing {diceNotation}:");
 
                 for(int total = 0; total < 10; total++)
                 {
-                    Console.Write($" {DiceRoll(diceNotation)}");
+                    Console.Write($"{DiceRoll(diceNotation)} ");
                 }
-
             }
 
-            catch(Exception e)
+            else
             {
-                Console.Write($"Can't throw {diceNotation}; {e.Message}");
+                Console.Write($"Can't throw {diceNotation}; as it is not in standard dice notation.");
             }
 
-            finally
-            {
-                Console.WriteLine($"\n");
-            }
-
+            Console.WriteLine($"\n");
         }
-        static void Main()
+
+        static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Throwing("2d6");
+            Throwing("d6");
+            Throwing("d6+5");
+            Throwing("5d6+5");
+            Throwing("2d10-5");
+            Throwing("d6+5");
+
             Throwing("36");
             Throwing("-12");
             Throwing("ad6");
@@ -83,51 +97,6 @@ namespace Day_3_Mission_2_Standard_dice_notation_extraction_the_regex_way
             Throwing("2d-4");
             Throwing("2d2.5");
             Throwing("2d$");
-            Throwing("5d6+5");
-            Throwing("2d10-5");
-            Console.WriteLine();
-        }
-        
-        
-        
-        
-        
-        
-        
-        static void Main(string[] args)
-        {
-            for(int variations = 0; variations < 5; variations++)
-            {
-                string diceNotation = "";
-                if(variations == 0)
-                    diceNotation = "2d6";
-                if(variations == 1)
-                    diceNotation = "d8";
-                if(variations == 2)
-                    diceNotation = "ad6";
-                if(variations == 3)
-                    diceNotation = "33d4*2";
-                if(variations == 4)
-                    diceNotation = "5d6-2";
-
-                // WRITING OUT THE ROLLS
-                if(IsStandardDiceNotation(diceNotation) == true)
-                {
-                    Console.Write($"Throwing {diceNotation}:");
-
-                    for(int total = 0; total < 10; total++)
-                    {
-                        Console.Write($" {DiceRoll(diceNotation)}");
-                    }
-                }
-
-                else
-                {
-                    Console.Write($"Can't throw {diceNotation}, as it is not in standard dice notation.");
-                }
-
-                Console.WriteLine($"\n");
-            }
         }
     }
 }
