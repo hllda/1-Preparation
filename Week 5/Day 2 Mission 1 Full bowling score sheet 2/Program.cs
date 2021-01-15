@@ -10,7 +10,6 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
         static int totalScore;
         static string[] pointsDisplay = new string[10];
 
-
         static void FirstRoll(string[,] score, int pinsDown, int rounds)
         {
             firstRoll = pinsDown;
@@ -139,9 +138,6 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
             int[,] scoreInt = new int[10, 2];
             scoreInt[rounds, 0] = firstRoll;
             scoreInt[rounds, 1] = secondRoll;
-
-
-
 
 
             if(rounds != 9)
@@ -296,7 +292,6 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
         static int ChosenLane(int chosenLane)
         {
-
             // CHECK IF THE ENTERED NUMBER IS VALID
             Console.CursorVisible = true;
             try
