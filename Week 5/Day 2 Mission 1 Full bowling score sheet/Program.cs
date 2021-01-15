@@ -3,43 +3,34 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 {
     class Program
     {
-        // ROUNDS
-        static int rounds;
-
-        // PINS
-        static int chosenLane;
         static int pinsDown;
-
-        // ROLLS
-        static int firstRoll;
-        static int secondRoll;
-        static int thirdRoll;
-
-        // SAVING THE ROLLS
-        static int[,] frameScores = new int[10, 3];
-
-        // DISPLAYING THE ROLLS
-        static string[,] frameScoresDisplay = new string[10, 3];
-
-        // TOTAL SCORES
-        static int[] pointsGained = new int[10];
-        static string[] totalScore = new string[10];
-
+        static int chosenLane;
 
         static void Main(string[] args)
         {
-            int chosenLane = 666;
-            string[,] score = new string[10, 3];
+            // SAVING THE ROLLS
+            int[,] frameScores = new int[10, 3];
 
-            int[] frameScores = new int[10];
+            // DISPLAYING THE ROLLS
+            string[,] frameScoresDisplay = new string[10, 3];
+
+            // SAVING THE SCORES
             int[] pointsGained = new int[10];
 
-            for(int y = 0; y < 10; y++)
-                for(int x = 0; x < 3; x++)
-                    score[y, x] = " ";
+            // DISPLAY THE SCORES
+            string[] totalScoreDisplay = new string[10];
+            for(int i = 0; i < 10; i++)
+                for(int j = 0; j < 3; j++)
+                    frameScoresDisplay[i, j] = " ";
 
             for(int rounds = 0; rounds < 10; rounds++)
             {
+                int firstRoll = 0;
+                int secondRoll = 0;
+                int thirdRoll = 0;
+                int pinsDown = 0;
+
+
                 // NORMAL ROUNDS
                 if(rounds < 9)
                 {
@@ -48,9 +39,9 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
                     // FIRST ROLL
                     retryFirst:
-                    Interface(rounds, "ROLL", false, pins);
+                    Interface(rounds+1, "First", false, pins);
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                     Console.SetCursorPosition(0, 17);
                     chosenLane = ChosenLane();
                     if(chosenLane == 666)
@@ -59,7 +50,7 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
                     else if(0 < chosenLane && chosenLane < 8)
                     {
                         Path(pins);
-                        FirstRoll();
+                        FirstRoll(rounds, pinsDown, firstRoll, frameScores);
                     }
 
                     else
@@ -67,15 +58,14 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
                     if(pinsDown == 10)
                     {
-                        frameScores[rounds] = pinsDown;
                         goto endRound;
                     }
 
                     // SECOND ROLL
                     retrySecond:
-                    Interface(rounds, "ROLL", false, pins);
+                    Interface(rounds+1, "Second", false, pins);
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                     Console.SetCursorPosition(0, 17);
                     chosenLane = ChosenLane();
                     if(chosenLane == 666)
@@ -84,20 +74,20 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
                     else if(0 < chosenLane && chosenLane < 8)
                     {
                         Path(pins);
-                        SecondRoll();
+                        SecondRoll(rounds, pinsDown, firstRoll, secondRoll, frameScores);
                     }
 
                     else
                         goto retrySecond;
 
-                    Interface(rounds, "ROLL", true, pins);
+                    Interface(rounds+1, "Second", true, pins);
                     Console.SetCursorPosition(0, 19);
-                    frameScores[rounds] = pinsDown;
-                    ScoreSheet();
+                    frameScores[rounds, 1] = pinsDown;
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
 
                     endRound:
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                     Console.SetCursorPosition(0, 16);
                     Console.Write("Press any key to continue");
                     Console.ReadKey();
@@ -112,9 +102,9 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
                     // FIRST ROLL
                     retryFirst:
-                    Interface(rounds, "ROLL", false, pins);
+                    Interface(rounds+1, "First", false, pins);
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                     Console.SetCursorPosition(0, 17);
                     chosenLane = ChosenLane();
                     if(chosenLane == 666)
@@ -123,13 +113,13 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
                     else if(0 < chosenLane && chosenLane < 8)
                     {
                         Path(pins);
-                        FirstRoll();
+                        FirstRoll(rounds, pinsDown, firstRoll, frameScores);
                     }
 
                     else
                         goto retryFirst;
 
-                    if(score[9, 0] == "X")
+                    if(frameScores[9, 0] == 10)
                     {
                         pins = new char[10] { 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' };
                         pinsDown = 0;
@@ -137,34 +127,27 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
                     // SECOND ROLL
                     retrySecond:
-                    Interface(rounds, "ROLL", false, pins);
+                    Interface(rounds+1, "Second", false, pins);
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                     Console.SetCursorPosition(0, 17);
                     chosenLane = ChosenLane();
+
                     if(chosenLane == 666)
                         goto retrySecond;
 
                     else if(0 < chosenLane && chosenLane < 8)
                     {
-                        frameScores[rounds] += pinsDown;
                         Path(pins);
-                        SecondRoll();
-                        if(score[9, 1] == "/" || score[9, 1] == "X")
-                        {
-                        }
-
-                        else
-                            goto endLastRound;
+                        SecondRoll(rounds, pinsDown, firstRoll, secondRoll, frameScores);
                     }
 
                     else
                         goto retrySecond;
 
-
-                    if(score[9, 0] == "X" || score[9, 1] == "X" || score[9, 1] == "/")
+                    if(frameScores[9, 0] + frameScores[9, 1] == 10 || frameScores[9, 0] == 10)
                     {
-                        if(score[9, 1] == "X" || score[9, 1] == "/")
+                        if(frameScores[9, 0] + frameScores[9, 1] == 10 || frameScores[9, 0] == 10)
                         {
                             pins = new char[10] { 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O' };
                             pinsDown = 0;
@@ -172,10 +155,9 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
 
                         // THIRD ROLL
                         retryThird:
-                        Interface(rounds, "ROLL", false, pins);
+                        Interface(rounds+1, "Third", false, pins);
                         Console.SetCursorPosition(0, 19);
-                        frameScores[rounds] += pinsDown;
-                        ScoreSheet();
+                        ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
                         Console.SetCursorPosition(0, 17);
                         chosenLane = ChosenLane();
                         if(chosenLane == 666)
@@ -184,32 +166,30 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
                         else if(0 < chosenLane && chosenLane < 8)
                         {
                             Path(pins);
-                            ThirdRoll();
+                            ThirdRoll(rounds, pinsDown, firstRoll, secondRoll, thirdRoll, frameScores);
                         }
 
                         else
                             goto retryThird;
                     }
 
-                    Interface(rounds, "ROLL", false, pins);
-                    Console.SetCursorPosition(0, 19);
-                    frameScores[rounds] += pinsDown;
-                    ScoreSheet();
 
+
+                    Interface(rounds+1, "Third", false, pins);
+                    Console.SetCursorPosition(0, 19);
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
 
                     endLastRound:
                     // DISPLAY FINISHED GAME
-                    Interface(rounds, "ROLL", true, pins);
-                    frameScores[rounds] += pinsDown;
+                    Interface(rounds+1, "Final", true, pins);
                     Console.SetCursorPosition(0, 19);
-                    ScoreSheet();
+                    ScoreSheet(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
 
-                    Console.SetCursorPosition(0, 17);
+                    Console.SetCursorPosition(0, 16);
                     Console.WriteLine("Press any key to continue\n");
 
 
-
-                    Console.WriteLine($"Final score: {totalScore}");
+                    Console.WriteLine($"Final score: {totalScoreDisplay[9]}");
                     Console.SetCursorPosition(0, 16);
                     Console.CursorVisible = false;
                     Console.WriteLine("Press any key to exit    ");
@@ -385,47 +365,230 @@ namespace Day_2_Mission_1_Full_bowling_score_sheet
             }
         }
 
-        //___________//
-
-        static void FirstRoll()
+        static void FirstRoll(int rounds, int pinsDown, int firstRoll, int[,] frameScores)
         {
-
+            firstRoll = pinsDown;
+            frameScores[rounds, 0] = firstRoll;
         }
 
-        static void SecondRoll()
+        static void SecondRoll(int rounds, int pinsDown, int firstRoll, int secondRoll, int[,] frameScores)
         {
+            if(rounds != 9)
+            {
+                secondRoll = pinsDown - firstRoll;
+            }
 
+            else
+            {
+                if(frameScores[9, 0] == 10)
+                {
+                    secondRoll = pinsDown;
+                }
+
+                else
+                {
+                    secondRoll = pinsDown - firstRoll;
+                }
+            }
+            frameScores[rounds, 1] = secondRoll;
         }
 
-        static void ThirdRoll()
+        static void ThirdRoll(int rounds, int pinsDown, int firstRoll, int secondRoll, int thirdRoll, int[,] frameScores)
         {
+            if(frameScores[9, 1] == 10 || frameScores[9, 0] + frameScores[9, 1] == 10)
+            {
+                thirdRoll = pinsDown;
+            }
 
+            else if(frameScores[9, 0] == 10)
+            {
+                thirdRoll = pinsDown - secondRoll;
+            }
+
+            frameScores[rounds, 2] = thirdRoll;
         }
 
-        static void Scoring()
+        static void Scoring(int rounds, int[,] frameScores, string[,] frameScoresDisplay, int[] pointsGained, string[] totalScoreDisplay)
         {
+            if(rounds != 9)
+            {
+                if(frameScores[rounds, 0] == 10)
+                {
+                    frameScoresDisplay[rounds, 0] = "X";
+                }
 
+                else if(frameScores[rounds, 0] == 0)
+                {
+                    frameScoresDisplay[rounds, 0] = "-";
+                }
+
+                else
+                {
+                    frameScoresDisplay[9, 0] = frameScores[9, 0].ToString();
+                }
+
+
+                if(frameScores[9, 0] + frameScores[rounds, 1] == 10)
+                {
+                    frameScoresDisplay[rounds, 1] = "/";
+                }
+
+                else if(frameScores[rounds, 1] == 0)
+                {
+                    frameScoresDisplay[rounds, 1] = "-";
+                }
+
+                else
+                {
+                    frameScoresDisplay[rounds, 1] = frameScores[rounds, 1].ToString();
+                }
+            }
+
+            else
+            {
+                if(frameScores[9, 0] == 10)
+                {
+                    frameScoresDisplay[9, 0] = "X";
+                }
+
+                else if(frameScores[9, 0] == 0)
+                {
+                    frameScoresDisplay[9, 0] = "-";
+                }
+
+                else
+                {
+                    frameScoresDisplay[9, 0] = frameScores[9, 0].ToString();
+                }
+
+                if(frameScores[9, 0] == 10 && frameScores[9, 1] == 10)
+                {
+                    frameScoresDisplay[9, 1] = "X";
+                }
+
+                else if(frameScores[9, 0] + frameScores[9, 1] == 10)
+                {
+                    frameScoresDisplay[9, 1] = "/";
+                }
+
+                else if(frameScores[9, 1] == 0)
+                {
+                    frameScoresDisplay[9, 1] = "-";
+                }
+
+                else
+                {
+                    frameScoresDisplay[9, 1] = frameScores[9, 1].ToString();
+                }
+
+                if(frameScores[9, 0] == 10 && frameScores[9, 1] == 10 && frameScores[9, 2] == 10)
+                {
+                    frameScoresDisplay[9, 2] = "X";
+                }
+
+                else if(frameScores[9, 0] == 10 && frameScores[9, 1] != 10 && frameScores[9, 1] + frameScores[9, 2] == 10)
+                {
+                    frameScoresDisplay[9, 2] = "/";
+                }
+
+                else
+                {
+                    frameScoresDisplay[9, 2] = frameScores[9, 2].ToString();
+                }
+            }
+
+
+            try
+            {
+                for(int i = 0; i < 10; i++)
+                {
+                    if(rounds != 9)
+                    {
+                         if(frameScores[i, 0] == 10 || frameScores[i, 0] + frameScores[i, 1] == 10)
+                            try
+                            {
+                                if(frameScores[i, 0] == 10)
+                                {
+                                    pointsGained[i] += frameScores[i] + frameScores[i+1] + frameScores[i+2];
+                                }
+
+                                else if(frameScores[i, 0] + frameScores[i, 1] == 10)
+                                {
+                                    pointsGained[i] += frameScores[i] + frameScores[i+1];
+                                }
+
+                                else
+                                {
+                                    pointsGained[i] += frameScores[i];
+                                }
+                            }
+
+                            catch
+                            {
+                                pointsGained[i] += frameScores[i];
+                            }
+
+                        else
+                        {
+                            pointsGained[i] += frameScores[i];
+                        }
+
+                    }
+
+                    else
+                    {
+                        try
+                        {
+                            pointsGained[9] += frameScores[9];
+                        }
+
+                        catch
+                        {
+                        }
+
+                    }
+
+
+                    }
+                       
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+            catch { }
         }
 
-        static void ScoreSheet()
+        static void ScoreSheet(int rounds, int[,] frameScores, string[,] frameScoresDisplay, int[] pointsGained, string[] totalScoreDisplay)
         {
-            Scoring();
+            Scoring(rounds, frameScores, frameScoresDisplay, pointsGained, totalScoreDisplay);
             const int alignment = 5;
             const int alignmentLast = 7;
             Console.WriteLine($"\n" +
                 $"┌─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┬─┐");
             Console.WriteLine(
-                $"│ │{frameScores[0, 0]}│{frameScores[0, 1]}│ │{frameScores[1, 0]}│{frameScores[1, 1]}│ │{frameScores[2, 0]}│{frameScores[2, 1]}" +
-                $"│ │{frameScores[3, 0]}│{frameScores[3, 1]}│ │{frameScores[4, 0]}│{frameScores[4, 1]}│ │{frameScores[5, 0]}│{frameScores[5, 1]}" +
-                $"│ │{frameScores[6, 0]}│{frameScores[6, 1]}│ │{frameScores[7, 0]}│{frameScores[7, 1]}│ │{frameScores[8, 0]}│{frameScores[8, 1]}" +
-                $"│ │{frameScores[9, 0]}│{frameScores[9, 1]}│{frameScores[9, 2]}│");
+                $"│ │{frameScoresDisplay[0, 0]}│{frameScoresDisplay[0, 1]}│ │{frameScoresDisplay[1, 0]}│{frameScoresDisplay[1, 1]}│ │{frameScoresDisplay[2, 0]}│{frameScoresDisplay[2, 1]}" +
+                $"│ │{frameScoresDisplay[3, 0]}│{frameScoresDisplay[3, 1]}│ │{frameScoresDisplay[4, 0]}│{frameScoresDisplay[4, 1]}│ │{frameScoresDisplay[5, 0]}│{frameScoresDisplay[5, 1]}" +
+                $"│ │{frameScoresDisplay[6, 0]}│{frameScoresDisplay[6, 1]}│ │{frameScoresDisplay[7, 0]}│{frameScoresDisplay[7, 1]}│ │{frameScoresDisplay[8, 0]}│{frameScoresDisplay[8, 1]}" +
+                $"│ │{frameScoresDisplay[9, 0]}│{frameScoresDisplay[9, 1]}│{frameScoresDisplay[9, 2]}│");
             Console.WriteLine(
                 $"│ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┤ └─┴─┴─┤");
             Console.WriteLine(
-                $"│{totalScore[0],alignment}│{totalScore[1],alignment}│{totalScore[2],alignment}" +
-                $"│{totalScore[3],alignment}│{totalScore[4],alignment}│{totalScore[5],alignment}" +
-                $"│{totalScore[6],alignment}│{totalScore[7],alignment}│{totalScore[8],alignment}" +
-                $"│{totalScore[9],alignmentLast}│");
+                $"│{totalScoreDisplay[0],alignment}│{totalScoreDisplay[1],alignment}│{totalScoreDisplay[2],alignment}" +
+                $"│{totalScoreDisplay[3],alignment}│{totalScoreDisplay[4],alignment}│{totalScoreDisplay[5],alignment}" +
+                $"│{totalScoreDisplay[6],alignment}│{totalScoreDisplay[7],alignment}│{totalScoreDisplay[8],alignment}" +
+                $"│{totalScoreDisplay[9],alignmentLast}│");
             Console.Write(
                 $"└─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴───────┘");
         }
