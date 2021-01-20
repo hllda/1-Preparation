@@ -31,7 +31,6 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
         ScaleMail,
         Plate,
         Other
-
     }
 
     class ArmorTypeEntry
@@ -66,6 +65,7 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
 
         // LIST FOR MATCHING SEARCH RESULTS
         static List<string> searchResults = new List<string>();
+
 
         static void Main(string[] args)
         {
@@ -323,60 +323,41 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
             }
         }
 
-        static void ArmorData(List<ArmorTypeEntry> armorTypeEntries)
+        static void ArmorData(Dictionary<ArmorType, ArmorTypeEntry> armorTypeEntries)
         {
+            string[] armorTypes = Enum.GetNames(typeof(ArmorType));
             
-            for(int i = 0; i < )
+            armorTypeEntries 
+
+            armorTypeEntries.Add(ArmorType.Leather, ); 
+            
+            
+            for(int i = 0; i < armorTypes.Length; i++)
             {
+                
+                
+                string armorTypeText = "Plate";
+                ArmorType armorType = Enum.Parse<ArmorType>(armorTypeText);
+
+                plateArmorEntry = armorTypeEntries[ArmorType.Plate];
+
+                
                 String[] info = armor[i].Split(",");
-
-
-            }
+                 
             
-            info = armor[0].Split(",");
+   
+                armorTypeEntries[i].Name = info[1];
+                armorTypeEntries[].Category = info[2];
+                armorTypeEntries[].Weight = Int32.Parse(info[3]);
 
-            if(armorType == "Leather")
-            {
-                info = armor[0].Split(",");
-            }
-
-            else if(armorType == "StuddedLeather")
-            {
-                info = armor[1].Split(",");
-
-            }
-
-            else if(armorType == "Hide")
-            {
-                info = armor[2].Split(",");
-
-            }
-
-            else if(armorType == "ChainShirt")
-            {
-                info = armor[3].Split(",");
-
-            }
-
-            else if(armorType == "ScaleMail")
-            {
-                info = armor[4].Split(",");
-            }
-
-            else if(armorType == "ChainMail")
-            {
-                info = armor[5].Split(",");
-            }
-
-            else if(armorType == "Plate")
-            {
-                info = armor[6].Split(",");
-            }
-
-            monsterEntries[0].Armor.Type.
+/* 
+        public string Name;
+        public ArmorCategory Category;
+        public int Weight;
 
 
-          
+           
+       
             monsterEntry.Armor.Type = ArmorType.StuddedLeather.ToString();
             monsterEntry.Armor.Type = ArmorType.Leather.ToString();
             monsterEntry.Armor.Type = ArmorType.Hide.ToString();
@@ -384,10 +365,15 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
             monsterEntry.Armor.Type = ArmorType.ChainMail.ToString();
             monsterEntry.Armor.Type = ArmorType.Plate.ToString();
 
+                    ArmorTypeEntry armorTypeEntry = armorTypeEntries[ArmorType].Armor.Type];
 
-              ArmorTypeEntry armorTypeEntry = armorTypeEntries[selectedMonsterEntry.Armor.Type];
+                 monsterEntries.Add(monsterEntry);
+*/
+ }
 
-            monsterEntries.Add(monsterEntry);
+          
+
+           
 
         }     
     }
