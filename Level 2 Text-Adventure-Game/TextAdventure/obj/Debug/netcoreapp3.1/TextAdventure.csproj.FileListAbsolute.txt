@@ -1,0 +1,4 @@
+D:\Projects\Text-Adventure-Game\TextAdventure\obj\Debug\netcoreapp3.1\TextAdventure.csprojAssemblyReference.cache
+D:\Projects\Text-Adventure-Game\TextAdventure\obj\Debug\netcoreapp3.1\TextAdventure.AssemblyInfoInputs.cache
+D:\Projects\Text-Adventure-Game\TextAdventure\obj\Debug\netcoreapp3.1\TextAdventure.AssemblyInfo.cs
+D:\Projects\Text-Adventure-Game\TextAdventure\obj\Debug\netcoreapp3.1\TextAdventure.csproj.CoreCompileInputs.cache
