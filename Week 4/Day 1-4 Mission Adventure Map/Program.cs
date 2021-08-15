@@ -280,7 +280,7 @@ namespace Day_1_4_Mission_Adventure_Map
             // DRAWING OF THE MAP
             DrawMap(width, height);
 
-            Console.ReadKey();
+            Console.ReadKey();            
         }  
     } 
 } 
