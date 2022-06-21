@@ -50,15 +50,13 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
     class Program
     {
         // READ FROM THE MONSTERMANUAL TEXT FILE
-        static string pathManual = @"D:\Projects\TheIndieQuest\Week 7\Day 3-5 Mission 1 Monster Manual with search\MonsterManual.txt";
-        static string manual = File.ReadAllText(pathManual);
+        static string manual = File.ReadAllText("MonsterManual.txt");
 
         // SPLIT THE MANUAL INTO INDIVIDUAL MONSTER ENTRIES
-        static String[] monster = manual.Split("\n\n");
+        static String[] monster = manual.Split("\r\n\r\n");
 
         // READ FROM THE ARMOR TEXT FILE
-        static string pathArmor = @"D:\Projects\TheIndieQuest\Week 7\Day 3-5 Mission 1 Monster Manual with search\ArmorTypes.txt";
-        static string armors = File.ReadAllText(pathArmor);
+        static string armors = File.ReadAllText("ArmorTypes.txt");
 
         // SPLIT THE ARMORS INTO INDIVIDUAL ARMOR INFORMATION
         static String[] armor = armors.Split("\n");
@@ -225,6 +223,7 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
             {
                 Console.WriteLine($"{i+1}: {searchResults[i]}");
             }
+
             Console.WriteLine("\nEnter number:");
             retryNumber:
             int chosen;
@@ -256,7 +255,7 @@ namespace Day_3_5_Mission_1_Monster_Manual_with_search
                 }
             }
 
-            Console.WriteLine($"\nDisplaying information for {monsterEntries[index].Name}.\n");
+            Console.WriteLine($"\n Displaying information for {monsterEntries[index].Name}.\n");
             Console.WriteLine($"Name: {monsterEntries[index].Name}");
             Console.WriteLine($"Description: {monsterEntries[index].Description}");
             Console.WriteLine($"Alignment: {monsterEntries[index].Alignment}");

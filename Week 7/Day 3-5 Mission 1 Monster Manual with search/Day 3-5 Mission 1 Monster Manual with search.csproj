@@ -6,4 +6,13 @@
     <RootNamespace>Day_3_5_Mission_1_Monster_Manual_with_search</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="ArmorTypes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="MonsterManual.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

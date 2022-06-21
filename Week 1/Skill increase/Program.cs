@@ -9,11 +9,6 @@ namespace list_tutorial
         static void Main(string[] args)
         {
            
-        
-        
-
-
-
         }
     }
 }
